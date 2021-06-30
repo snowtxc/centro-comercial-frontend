@@ -1,0 +1,128 @@
+
+<!--MODALS-->
+
+<div id="addDepModal" class="modal">
+    <div class="modal-content">
+        <h5>Agregar departamento</h5>
+        <label>Nombre:</label>
+        <input type="text" name="nombre_departamento">
+    </div>
+    <div class="modal-footer">
+        <a class="waves-effect waves-light btn">Agregar</a>
+    </div>
+</div>
+
+
+
+
+
+<div id="addLocalidadModal" class="modal">
+    <div class="modal-content">
+        <h5>Agregar localidad para San Jose</h5>
+        <label>Nombre:</label>
+        <input type="text" name="nombre_localidad">
+    </div>
+    <div class="modal-footer">
+        <a class="waves-effect waves-light btn">Agregar</a>
+    </div>
+</div>
+
+
+<div class="departamentos-localidades-container">
+
+    <div class="departamentos-container">
+
+        <div class="title"><h3>DEPARTAMENTOS:</h3></div>
+
+        <div class="departamentos-search">
+            <input placeholder="buscador" id="departamentos_buscador" type="text" class="validate">
+        </div>
+
+        <div id="btnAddDep"><a class="waves-effect waves-light btn modal-trigger" href="#addDepModal">AGREGAR DEPARTAMENTO</a></div>
+
+        <div class="departamentos-list">
+            <ul class="collapsible">
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">location_on</i>San Jose</div>
+                    <div class="collapsible-body">
+                        <div class="departamento-info">
+                            <a class="waves-effect waves-light btn modal-trigger" href="#addLocalidadModal" id="btnAddLocalidad">Agregar localidad</a>
+
+                            <h5>LOCALIDADES:</h5>
+                            <ul>
+                                <li><a href="#"><strong>Libertad</strong></a></li>
+                                <li><a href="#"><strong>Ecilda Paullier</strong></a></li>
+                                <li><a href="#"><strong>Colonia Wilson</strong></a></li>
+                                <li><a href="#"><strong>Kiyu</strong></a></li>
+                                <li><a href="#"><strong>Ciudad Del Plata</strong></a></li>
+                                <li><a href="#"><strong>San Jose de Mayo</strong></a></li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">location_on</i>San Jose</div>
+                    <div class="collapsible-body">
+                        <div class="departamento-info">
+                            <h5>LOCALIDADES:</h5>
+                            <ul>
+                                <li><a href="#"><strong>Libertad</strong></a></li>
+                                <li><a href="#"><strong>Ecilda Paullier</strong></a></li>
+                                <li><a href="#"><strong>Colonia Wilson</strong></a></li>
+                                <li><a href="#"><strong>Kiyu</strong></a></li>
+                                <li><a href="#"><strong>Ciudad Del Plata</strong></a></li>
+                                <li><a href="#"><strong>San Jose de Mayo</strong></a></li>
+                            </ul>
+                        </div>
+                
+                    </div>
+                </li>
+
+
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">location_on</i>San Jose</div>
+                    <div class="collapsible-body">
+                        <div class="departamento-info">
+                            <h5>LOCALIDADES:</h5> 
+
+                            <ul>
+                                <li>
+                                    <div class="chip">
+                                        Libertad
+                                        <i class="close material-icons">close</i>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="chip">
+                                        Libertad
+                                        <i class="close material-icons">close</i>
+                                    </div>
+                                </li>
+                                <li><a href="#"><strong>Colonia Wilson</strong></a></li>
+                                <li><a href="#"><strong>Kiyu</strong></a></li>
+                                <li><a href="#"><strong>Ciudad Del Plata</strong></a></li>
+                                <li><a href="#"><strong>San Jose de Mayo</strong></a></li>
+                            </ul>
+                        </div>
+                
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="pagination">
+            <jw-pagination [items]="items" (changePage)="onChangePage($event)"></jw-pagination>
+        </div>
+        
+
+
+    </div>
+</div>
+
+
+
+
+

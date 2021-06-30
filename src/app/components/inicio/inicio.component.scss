@@ -1,0 +1,38 @@
+.global-container{
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(7,1fr);
+    grid-template-rows: 70px repeat(1,7fr);
+
+}
+.global-container div{
+  
+  
+
+}
+
+
+.global-container-header{
+    grid-column: 1/8;
+
+   
+
+}
+
+.global-container-sidebar{
+    grid-column: 1/3;
+    grid-row:2;
+  
+    
+  
+   
+   
+}
+
+.global-container-content{
+    grid-column: 3/8;
+    grid-row:2;
+     
+}

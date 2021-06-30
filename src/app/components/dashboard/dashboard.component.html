@@ -1,0 +1,73 @@
+
+<div class="dashboard-container">
+    
+
+    
+    <div class="dashboard-information">
+        <div class="information-item activas">50 EMPRESAS ACTIVAS</div>
+        <div class="information-item inactivas">17 EMPRESAS INACTIVAS</div>
+    </div>
+    
+    <div class="dashboard-empresas-rubro">
+
+        <h5>CANTIDAD DE EMPRESAS POR RUBRO:</h5>
+        
+        <div class="empresas-rubro-items">
+            <div>50 tiendas</div>
+            <div>20 opticas</div>
+            <div>70 supermercados</div>
+            <div>100 carnicerias</div>
+            <div>8  consultoras</div>
+       
+        </div>
+    </div>
+
+
+    <div class="dasbhoard-altas-bajas">
+        <h5>ALTAS Y BAJAS DEL MES</h5>
+
+        <ul class="collection with-header">
+            <li class="collection-header">
+                <h4>Empresas</h4>
+                <select class="browser-default">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="1">Empresas</option>
+                    <option value="2">Personas</option>
+                </select>
+            </li>
+            <li class="collection-item">
+                <div class="collection-item-name">Avance software</div>
+                <div class="collection-item-fecha"><span>25/05/2019</span></div>
+                <div class="collection-item-type">ALTA</div>
+            </li>
+            <li class="collection-item">
+                <div class="collection-item-name">Avance software</div>
+                <div class="collection-item-fecha"><span>25/05/2019</span></div>
+                <div class="collection-item-type">ALTA</div>
+            </li>
+            <li class="collection-item">
+                <div class="collection-item-name">Avance software</div>
+                <div class="collection-item-fecha"><span>25/05/2019</span></div>
+                <div class="collection-item-type">ALTA</div>
+            </li>
+            <li class="collection-item">
+                <div class="collection-item-name">Avance software</div>
+                <div class="collection-item-fecha"><span>25/05/2019</span></div>
+                <div class="collection-item-type">ALTA</div>
+            </li>
+        </ul>
+
+        <jw-pagination [items]="items" (changePage)="onChangePage($event)"></jw-pagination>
+        
+
+
+    </div>
+
+
+
+    <div class="dashboard-aniversary">
+        <h5>PROXIMOS ANIVERSARIOS</h5>
+        <full-calendar [options]="calendarOptions"></full-calendar>
+    </div>
+
+</div>

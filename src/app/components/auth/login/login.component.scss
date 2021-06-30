@@ -1,0 +1,29 @@
+.login_container{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+
+.login_container h3{
+    text-align: center;
+    font-weight: bold;
+}
+
+.login-form-input{
+    margin: 25px;
+}
+
+
+
+.login-form-input a{
+   width: 200px;
+   background-color: #028bd2;
+}
+
+.login-form-input:focus {
+    border-bottom: #028bd2;
+}

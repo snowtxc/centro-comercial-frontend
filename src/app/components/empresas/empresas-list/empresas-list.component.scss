@@ -1,0 +1,53 @@
+
+.title{
+    text-align: center;
+}
+
+.empresas-container{
+    padding: 20px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+
+}
+
+.empresas-filter{
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.empresas-filter-element{
+    margin: 20px;
+}
+
+#btn-filtrar{
+    line-height: 60px; 
+}
+
+
+.empresas-search {
+   margin-top: 20px;
+   width: 100%;
+   padding: 20px;
+}
+
+.empresas-search input{
+    text-align: center;
+}
+
+
+.collection-item:hover{
+    background-color: gray;
+    cursor: pointer;
+
+
+}
+
+.empresas-list{
+    margin-top: 55px;
+}
+
+#btnCreateEmpresa a{
+    float: right;
+}

@@ -1,0 +1,115 @@
+<div class="empresas-container">
+   <div class="title"><h3>Empresas</h3></div>
+
+
+    <div class="empresas-filter">
+       <div class="empresas-filter-element">
+            <label>Departamento</label>
+            <select class="browser-default">
+                <option value="" disabled selected>Choose your option</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+            </select>
+       </div>
+
+       <div class="empresas-filter-element">
+            <label>Localidad</label>
+            <select class="browser-default">
+                <option value="" disabled selected>Choose your option</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+            </select>
+
+       </div>
+
+    <div class="empresas-filter-element">
+        <label>Estado</label>
+        <div class="switch">
+            <label> 
+                Todas
+                <input type="checkbox">
+                <span class="lever"></span>
+                Activo
+            </label>
+        </div>
+    
+    </div>
+
+    <div class="empresas-filter-element">
+        <label>Rubro:</label>
+        <select class="browser-default">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+        </select>
+    
+    </div>
+
+    <div class="empresas-filter-element" >
+        <a class="waves-effect waves-light btn" id="btn-filtar">FILTRAR</a>
+        
+    </div>
+ </div>
+
+
+
+
+
+
+
+
+    <div class="empresas-search">
+         <input placeholder="buscador" id="empresa_buscador" type="text" class="validate">
+
+    </div>
+
+
+    <div id="btnCreateEmpresa">
+        <a class="waves-effect waves-light btn" (click)="onClickAddEmpresa()">AGREGAR NUEVA EMPRESA</a>
+    </div>
+
+    <div class="empresas-list">
+        <div class="empresa-list-elements">
+            <ul class="collection">
+                <li class="collection-item avatar" (click)="selectedEmpresa()">
+                    <img src="images/yuna.jpg" alt="" class="circle">
+                    <span class="title">Apple</span>
+                    <p>Direccion: Rivera 780<br>
+                        Rut: 213123
+                    </p>
+                </li>
+                <li class="collection-item avatar">
+                    <i class="material-icons circle">folder</i>
+                    <span class="title">Title</span>
+                    <p>First Line <br>
+                        Second Line
+                    </p>
+                </li>
+                <li class="collection-item avatar">
+                    <i class="material-icons circle green">insert_chart</i>
+                    <span class="title">Title</span>
+                    <p>First Line <br>
+                        Second Line
+                    </p>
+                </li>
+                <li class="collection-item avatar">
+                    <i class="material-icons circle red">play_arrow</i>
+                    <span class="title">Title</span>
+                    <p>First Line <br>
+                        Second Line
+                    </p> 
+                </li>
+            </ul>
+        </div>
+
+        <div class="pagination">
+            <jw-pagination [items]="items" (changePage)="onChangePage($event)"></jw-pagination>
+        </div>
+
+
+    </div>
+
+</div>
