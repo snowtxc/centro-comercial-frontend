@@ -1,0 +1,49 @@
+
+@media (min-width: 768px) and (max-width: 1199px) {
+    
+    .global-container-header{
+        grid-column: 1/8;
+
+    }
+    
+    .global-container-sidebar{
+        grid-column: 1/8;
+        grid-row: 2/3;
+         
+     
+    }
+    
+    .global-container-content{
+        grid-column: 1/8;
+        grid-row: 3/7;
+        
+    }
+
+}
+
+@media (max-width: 767px) { 
+    .global-container-sidebar{
+          grid-column: 1/8;
+          grid-row: 2/7;
+          z-index: 3;
+          height: 100vh; 
+        
+    }
+
+
+    .global-container-content{
+        grid-column: 1/8;
+       
+    }
+        
+
+
+
+}
+ 
+
+@media (max-width: 480px) {
+
+
+
+}

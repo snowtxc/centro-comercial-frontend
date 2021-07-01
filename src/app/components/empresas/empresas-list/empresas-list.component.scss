@@ -21,9 +21,7 @@
     margin: 20px;
 }
 
-#btn-filtrar{
-    line-height: 60px; 
-}
+
 
 
 .empresas-search {
@@ -40,14 +38,20 @@
 .collection-item:hover{
     background-color: gray;
     cursor: pointer;
-
-
+    
 }
 
 .empresas-list{
     margin-top: 55px;
 }
 
-#btnCreateEmpresa a{
+#btnCreateEmpresa{
     float: right;
+    background-color: #028bd2;
+    border-radius: 20px;
+}
+
+#btnFiltrarEmpresa{
+    background-color: #028bd2;
+    border-radius: 20px;
 }

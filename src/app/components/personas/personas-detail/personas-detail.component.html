@@ -1,11 +1,49 @@
+
+<!--MODALS-->
+<div id="asociarEmpresaModal" class="modal">
+    <div class="modal-content">
+        <h4>Asociar empresa a daniel diaz</h4>
+        <form>
+            <div>
+                <label>Browser Select</label>
+                <select class="browser-default">
+                    <option value="" disabled selected>Escoge una empresa</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                </select>
+
+            </div>
+
+
+            <div>
+                <input placeholder="Relacion" id="first_name" type="text" class="validate">
+            </div>
+        
+
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">ASOCIAR</a>
+    </div>
+</div>
+
+
+
+
+
+
 <div class="container-detail-persona">
+
+
+    <div class="persona-information">
 
     <div class="title">
         <h3>Detalle informacion persona</h3>
     </div>
 
     <div class="submit-button">
-        <button class="btn waves-effect waves-light" type="submit" name="action">Guardar cambios
+        <button class="btn waves-effect waves-light" type="submit" name="action" id="btnSaveChanges">Guardar cambios
     
         </button>
     
@@ -35,10 +73,7 @@
                     <label for="Telefono">Celular:</label>
                 </div>
 
-                <div class="input-field col s6">
-                    <input id="celular" type="text" class="validate">
-                    <label for="celular">Celular:</label>
-                </div>
+    
 
                 <div class="input-field col s6">
 
@@ -51,10 +86,30 @@
                 </div>
             </div>
 
-
-
-            
-
         </form>
+    </div>
+
+    </div>
+
+
+
+    <div class="empresas-asociadas-container">
+        <div class="sub-title"><h4>Empresas asociadas</h4></div>
+
+        <div id="btnAsociarEmpresa"><a class="waves-effect waves-light btn modal-trigger" id="btnAsociarEmpresa" href="#asociarEmpresaModal">asociar empresa</a></div>
+
+        <div class="empresas-list">
+            <ul class="collection">
+                <li class="collection-item">
+                    <span>Avance Software/CEO</span> 
+                    <div class="item-clear-btn">
+                        <i class="material-icons">clear</i>
+                    </div>
+                </li>
+                <li class="collection-item">Altech/Socio</li>
+                <li class="collection-item">Junta departamental/ Inversor</li>
+                <li class="collection-item">Alvin</li>
+            </ul>
+        </div>
     </div>
 </div>

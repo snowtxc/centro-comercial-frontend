@@ -5,7 +5,8 @@ import { CalendarOptions } from '@fullcalendar/angular';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss',
+              './responsive.scss']
 })
 export class DashboardComponent implements OnInit {
   items = [1,2,3,4];

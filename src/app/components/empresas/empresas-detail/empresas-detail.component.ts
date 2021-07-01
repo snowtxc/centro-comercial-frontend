@@ -5,11 +5,13 @@ declare var M:any;
 @Component({
   selector: 'app-empresas-detail',
   templateUrl: './empresas-detail.component.html',
-  styleUrls: ['./empresas-detail.component.scss']
+  styleUrls: ['./empresas-detail.component.scss',
+              './responsive.scss']
 })
 export class EmpresasDetailComponent implements OnInit {
 
 
+  
 
   constructor() { }
 

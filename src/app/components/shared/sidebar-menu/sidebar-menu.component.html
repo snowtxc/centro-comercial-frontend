@@ -1,25 +1,28 @@
-<div class="sidebar">
+
+
+
+<div class="sidebar show" #SideBar>
 
     <div class="sidebar-items">
-
-        <div class="siedebar-items__item" routerLink="dashboard" routerLinkActive="activo">
+        <div class="siedebar-items__item" routerLink="dashboard" routerLinkActive="router-active" (click)="clickedItem()" >
             <div><i class="material-icons">pie_chart</i></div>
             <div><a> DASHBOARD</a></div>
         </div>
         
-        <div class="siedebar-items__item" routerLink="empresas" routerLinkActive="activo">
+        <div class="siedebar-items__item" routerLink="empresas" routerLinkActive="router-active" (click)="clickedItem()"> 
             <div><i class="material-icons">business</i></div>
             <div><a> EMPRESAS </a></div>
         </div>
-        <hr>
 
-        <div class="siedebar-items__item" routerLink="personas" routerLinkActive="activo">
+        
+
+        <div class="siedebar-items__item" routerLink="personas" routerLinkActive="router-active" (click)="clickedItem()">
             <div><i class="material-icons">person</i></div> 
             <div><a> PERSONAS </a></div>
         </div>
-        <hr>
+    
 
-        <div class="siedebar-items__item" routerLink="departamentos-localidades" routerLinkActive="activo"> 
+        <div class="siedebar-items__item" routerLink="departamentos-localidades" routerLinkActive="router-active" (click)="clickedItem()"> 
             <div><i class="material-icons">location_on</i></div>
             <div><a> DEPARTAMENTOS/LOCALIDADES</a>
         </div>

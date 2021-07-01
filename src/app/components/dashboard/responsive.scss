@@ -1,0 +1,84 @@
+
+@media (min-width: 768px) and (max-width: 1199px) {
+    
+
+}
+
+@media (max-width: 767px) { 
+  
+
+.dashboard-information{
+    width: 100%;
+    justify-content: space-around;
+   
+}
+
+.information-item {
+    min-width: 100px;
+    font-size: 15px;
+    margin: 15px;
+    flex-wrap: wrap;
+}
+
+.dashboard-information .activas{
+    background-color: #F87161;
+
+}
+
+
+.dashboard-information .inactivas{
+    background-color: #D3D3D3;
+  
+}
+
+
+
+.dashboard-empresas-rubro{
+    width: 90%;
+    max-height: 50vh;
+    overflow-y: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px; 
+}
+
+.empresas-rubro-items{
+    display: flex;
+    flex-wrap: wrap;
+    min-width: 100px;
+
+}
+
+.empresas-rubro-items div{
+    background-color: #4F4B43;
+    color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+}
+
+
+.dasbhoard-altas-bajas{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dashboard-aniversary{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+}
+
+
+}
+ 
+
+@media (max-width: 480px) {
+
+
+
+}

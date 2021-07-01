@@ -19,5 +19,32 @@
 
 #save-changes-btn{
     float: right;
+    background-color: #028bd2;
+    border-radius: 20px;
 }
-  
+
+
+.form-user-info{
+    margin-top: 50px;
+}
+
+
+.personas-list{
+    margin-top: 60px;
+}
+
+.sub-title{
+    text-align: center;
+}
+
+.collection-item{
+    display: flex;
+    justify-content: space-between;
+}
+
+.item-clear-btn i:hover{
+    color: red;
+    cursor: pointer;
+
+}
+

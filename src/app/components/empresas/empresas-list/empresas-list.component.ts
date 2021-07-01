@@ -7,7 +7,8 @@ declare var M: any;
 @Component({
   selector: 'app-empresas-list',
   templateUrl: './empresas-list.component.html',
-  styleUrls: ['./empresas-list.component.scss']
+  styleUrls: ['./empresas-list.component.scss',
+               './responsive.scss']
 })
 export class EmpresasListComponent implements OnInit {
 

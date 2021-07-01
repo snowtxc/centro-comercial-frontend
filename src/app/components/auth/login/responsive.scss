@@ -1,0 +1,52 @@
+
+@media (min-width: 768px) and (max-width: 1199px) {
+    .login_container{
+    width: 65%;
+    padding: 15px;
+   
+}
+
+
+.login_container h3{
+    text-align: center;
+    font-weight: bold;
+}
+
+.login-form-input{
+    margin: 25px;
+}
+
+
+
+.login-form-input a{
+   width: 200px;
+   background-color: #028bd2;
+}
+
+.login-form-input:focus {
+    border-bottom: #028bd2;
+}
+   
+
+
+   
+}
+
+@media (max-width: 767px) { 
+    .login_container{
+        width: 75%;
+        padding: 15px;
+    }
+
+
+
+}
+ 
+
+@media (max-width: 480px) {
+    .login_container{
+        width: 95%;
+        padding: 15px;
+    }
+
+}

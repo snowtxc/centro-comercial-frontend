@@ -1,31 +1,46 @@
 
 <!--MODALS-->
 
-<div id="addDepModal" class="modal">
-    <div class="modal-content">
-        <h5>Agregar departamento</h5>
-        <label>Nombre:</label>
-        <input type="text" name="nombre_departamento">
-    </div>
-    <div class="modal-footer">
-        <a class="waves-effect waves-light btn">Agregar</a>
-    </div>
+<div id="addDepModal"  class="modal" >
+    <form [formGroup]="formAddDep" (ngSubmit)="onSubmitAddDep()">
+        <div class="modal-content">
+            <h5>Agregar departamento</h5>
+            <label>Nombre:</label>
+            <div class="error-validation" *ngIf="formAddDep.invalid && submitedFormDep">
+                <span>Nombre de departamento es requerido</span>
+            </div>
+            <input type="text" name="nombre_departamento" formControlName="name_departamento">
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn waves-effect waves-light" type="submit" name="action">Agregar</button>
+        </div>
+    </form>
 </div>
 
 
 
 
 
-<div id="addLocalidadModal" class="modal">
-    <div class="modal-content">
-        <h5>Agregar localidad para San Jose</h5>
-        <label>Nombre:</label>
-        <input type="text" name="nombre_localidad">
-    </div>
-    <div class="modal-footer">
-        <a class="waves-effect waves-light btn">Agregar</a>
-    </div>
+<div id="addLocalidadModal" class="modal" [formGroup]="formAddLocalidad" (ngSubmit)="onSubmitAddLocalidad()">
+    <form [formGroup]="formAddLocalidad" (ngSubmit)="onSubmitAddLocalidad()">
+        <div class="modal-content">
+            <h5>Agregar localidad para San Jose</h5>
+            <label>Nombre:</label>
+            <div class="error-validation" *ngIf="formAddLocalidad.invalid && submitedFormLocalidad">
+                <span>Nombre de localidad es requerido</span>
+            </div>
+            <input type="text" name="nombre_localidad" formControlName="name_localidad">
+        </div>
+        
+        <div class="modal-footer">
+            <button class="btn waves-effect waves-light" type="submit" name="action">Agregar</button>
+        </div>
+    </form>
 </div>
+
+
+
 
 
 <div class="departamentos-localidades-container">
@@ -38,7 +53,7 @@
             <input placeholder="buscador" id="departamentos_buscador" type="text" class="validate">
         </div>
 
-        <div id="btnAddDep"><a class="waves-effect waves-light btn modal-trigger" href="#addDepModal">AGREGAR DEPARTAMENTO</a></div>
+        <div ><a class="waves-effect waves-light btn modal-trigger" id="btnAddDep" href="#addDepModal">AGREGAR DEPARTAMENTO</a></div>
 
         <div class="departamentos-list">
             <ul class="collapsible">

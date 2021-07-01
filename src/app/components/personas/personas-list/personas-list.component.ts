@@ -7,7 +7,8 @@ declare var M:any;
 @Component({
   selector: 'app-personas-list',
   templateUrl: './personas-list.component.html',
-  styleUrls: ['./personas-list.component.scss']
+  styleUrls: ['./personas-list.component.scss',
+              './responsive.scss']
 })
 export class PersonasListComponent implements OnInit {
   

@@ -1,0 +1,80 @@
+
+@media (min-width: 768px) and (max-width: 1199px) {
+   
+
+}
+
+@media (max-width: 767px) {
+    .personas-container{
+        padding: 10px;
+       
+    }
+    
+    
+    .title h3{
+        font-size: 30px;
+        text-align: center;
+    }
+    
+    .personas-filter{
+        box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+    
+    
+    .personas-filter-element{
+        margin: 20px;
+    }
+
+    #btn-filtrar{
+        line-height: 60px; 
+    }
+
+    .personas-search {
+        margin-top: 20px;
+        width: 100%;
+        padding: 20px;
+    }
+    
+    .personas-search input{
+        text-align: center;
+    }
+    
+    .personas-list{
+        margin-top: 50px;
+    }
+
+.collection-item:hover{
+    cursor: pointer;
+    background-color: #C4C4C4;
+}
+
+#push-button{
+    float: right;
+    
+}
+
+#editBtnInfo{
+    float: right;
+
+}
+
+.estado-activo{
+    background-color: green;
+}
+
+#btnCreatePersona{
+    float: right;
+}
+
+  
+}
+ 
+
+@media (max-width: 480px) {
+
+
+
+}

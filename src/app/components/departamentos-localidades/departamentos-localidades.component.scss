@@ -7,10 +7,30 @@
     text-align: center;
 }
 
+#btnAddDep{
+    float: right;
+    background-color: #028bd2;
+    border-radius: 20px;
+    
+}   
+
 #btnAddLocalidad{
     float: right;
+    background-color: #028bd2;
+    border-radius: 20px;
 }
+  
+
 
 .departamentos-search input{
     text-align: center;
+}  
+
+.departamentos-list{
+    margin-top: 50px;
+    
+}
+
+.error-validation{
+    color: red;
 }

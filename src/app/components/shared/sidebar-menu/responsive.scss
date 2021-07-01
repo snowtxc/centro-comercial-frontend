@@ -1,0 +1,55 @@
+
+@media (min-width: 768px) and (max-width: 1199px) {
+    .sidebar{
+        height: 20vh;
+       
+    }
+    
+    .sidebar-items{
+        display: flex;
+        justify-content: space-between;
+    }
+    
+}
+
+@media (max-width: 767px) { 
+    .sidebar{
+        position: fixed;
+        top: 55px;
+        opacity: 0.9;
+       
+    }
+    
+    .sidebar-items{
+        display: flex;
+        flex-direction: column;
+    }
+
+     .sidebar{
+        position: fixed;
+        top: 55px;
+        opacity: 0.9;
+        
+    }
+
+    .show{
+        transform: translateX(-100%);
+        transition: 1s; 
+    }
+
+    .mostrar{
+        transform: translateX(0%);
+        transition: 1s;
+    }
+
+    
+
+  
+}
+ 
+
+@media (max-width: 480px) {
+    
+
+
+}
