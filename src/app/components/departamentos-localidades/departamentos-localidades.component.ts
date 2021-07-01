@@ -41,8 +41,8 @@ export class DepartamentosLocalidadesComponent implements OnInit {
 
       var modalElems = document.querySelectorAll('.modal');
       var instances = M.Modal.init(modalElems);
-  
-   
+
+      
   }
 
   onChangePage(pageOfItems: Array<any>) {
@@ -67,12 +67,11 @@ export class DepartamentosLocalidadesComponent implements OnInit {
 
     if(this.formAddLocalidad.invalid){
       return;
-    }
+    } 
 
     this.formAddLocalidad.reset();
     this.submitedFormLocalidad = false;
     console.log("Nice localidad");
-
 
   }
 

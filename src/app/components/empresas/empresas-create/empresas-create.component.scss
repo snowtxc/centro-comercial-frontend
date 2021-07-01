@@ -14,6 +14,8 @@
 }
 
 
+
+
 .form-user-info{
     margin-top: 50px;
 }
@@ -21,4 +23,13 @@
 #button{
  background-color: #028bd2;
  border-radius: 20px;
+}
+
+.error-validation{
+    color: red;
+    
+}
+
+.msg-invalid{
+    text-align: center;
 }
