@@ -30,12 +30,12 @@ export class PersonasListComponent implements OnInit {
   }
 
   onClickEdit(){
-    this._router.navigate(['/home/personas/1/detail']);
+    this._router.navigate(['/admin/personas/1/detail']);
 
   }
 
   onClickAddPersona(){
-    this._router.navigate(['/home/personas/create']);
+    this._router.navigate(['/admin/personas/create']);
   }
 
 }

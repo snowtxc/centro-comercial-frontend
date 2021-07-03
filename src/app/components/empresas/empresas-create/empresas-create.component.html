@@ -5,7 +5,7 @@
     <div class="title"> <h3>Agregar empresa</h3></div>
 
     <div class="row">
-        <form class="col s12" [formGroup]="addEmpresaForm" (ngSubmit)="onSubmitAddEmpresa()">
+        <form class="col s12" [formGroup]="addEmpresaForm" (ngSubmit)="onSubmitAddEmpresa()" enctype='multipart/form-data'>
             <div class="row">
                 <div class="input-field col s6">
                     <input id="nombre" type="text" class="validate" formControlName="name">
@@ -55,6 +55,7 @@
                     <div class="error-validation" *ngIf="addEmpresaForm.invalid && submitedEmpresaForm">
                         <span *ngIf="addEmpresaForm.controls['estado'].errors?.required">Estado es requerido</span>
                     </div>
+                    
                 </div>
             </div>
     
@@ -111,19 +112,21 @@
             </div>
 
             <div class="row">
-                <form action="#">
+                <form action="#" enctype='multipart/form-data'>
                     <div class="file-field input-field">
                         <div class="btn">
                             <span>Importar Logo</span>
-                            <input type="file">
+                            <input type="file" (change)="fileChangeEvent($event)">
                         </div>
                         <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text" formControlName="logo">
+                            <input class="file-path validate" type="text">
                         </div>
                     </div>
                 </form>
                 <div class="error-validation" *ngIf="addEmpresaForm.invalid && submitedEmpresaForm">
-                    <span *ngIf="addEmpresaForm.controls['logo'].errors?.required">Logo es requerido</span>
+                
+                    <span *ngIf="!logo">Logo es requerido</span>
+                    <span *ngIf="errorFormatFile">Formato de archivo invalido(Enable: png,jpg,jpeg)</span>
                 </div>
             </div>
     

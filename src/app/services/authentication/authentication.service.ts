@@ -14,6 +14,7 @@ import { BehaviorSubject } from 'rxjs';
 //Services
 
 import { LocalstorageService } from '@services/localstorage/localstorage.service';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -25,7 +26,7 @@ export class AuthenticationService {
   public  dataUser$ : Observable<any>;
 
 
-  constructor(private _http:HttpClient,private _localStorage:LocalstorageService) {
+  constructor(private _http:HttpClient,private _localStorage:LocalstorageService,private _router:Router) {
     this.currentDataSubject$ = new BehaviorSubject<any>(JSON.parse(_localStorage.getDataUser()!));
     this.dataUser$ = this.currentDataSubject$.asObservable();
   
@@ -48,13 +49,23 @@ export class AuthenticationService {
        const token = obj.token;
 
        const datauser = {
-         username : obj.user.username
+         username : obj.user.username,
+         isAdmin : obj.user.isAdmin
        }
 
        this.createUserSesion(token,datauser);
 
+       if(datauser.isAdmin){
+         this._router.navigate(['']);
+       }else{
+         this._router.navigate(['user_info']);
+       }
+
     }))
   }
+
+
+  get userValue(){ return this.currentDataSubject$.value; }
 
 
   createUserSesion(token: any, datauser: any) {
@@ -69,9 +80,18 @@ export class AuthenticationService {
     this._localStorage.destroyToken();
     this._localStorage.destroyDataUser();
     this.currentDataSubject$.next(null);
+    this._router.navigate(['login']);  
+  }
+
+  isLogged(): boolean{
+    if (this.currentDataSubject$.value != null) {
+      return true;
+    }
+    return false;
 
   }
 
+  
 
 
 }

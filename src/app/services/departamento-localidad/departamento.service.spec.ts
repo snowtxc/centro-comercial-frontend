@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DepartamentoService } from './departamento-localidad.service';
+import { DepartamentoService } from './departamento.service';
 
 describe('DepartamentoLocalidadService', () => {
   let service: DepartamentoService;
@@ -14,3 +14,4 @@ describe('DepartamentoLocalidadService', () => {
     expect(service).toBeTruthy();
   });
 });
+ 

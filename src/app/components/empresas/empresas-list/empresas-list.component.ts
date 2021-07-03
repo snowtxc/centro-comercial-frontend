@@ -31,12 +31,12 @@ export class EmpresasListComponent implements OnInit {
   }
 
   selectedEmpresa(){
-      this._router.navigate(['/home/empresas/1/detail']);
+      this._router.navigate(['/admin/empresas/1/detail']);
     
   }
 
   onClickAddEmpresa(){
-    this._router.navigate(['/home/empresas/create']);
+    this._router.navigate(['/admin/empresas/create']);
     
   }
 }

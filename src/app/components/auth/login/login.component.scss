@@ -3,8 +3,9 @@
     margin-left: auto;
     margin-right: auto;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    padding: 20px;
+    padding: 25px;
     margin-top: 30px;
+
 }
 
 
@@ -14,17 +15,32 @@
 }
 
 .login-form-input{
-    margin: 25px;
+    margin: 55px;
+    
 }
 
-
-
-.login-form-input a{
+#button{
    width: 200px;
    background-color: #028bd2;
    border-radius: 20px;
+   margin: auto;
+
 }
 
-.login-form-input:focus {
-    border-bottom: #028bd2;
+
+.submit{
+    width: 200px;
+    margin: auto;
+}
+
+
+.error-validation{
+    color: red;
+}
+
+.error-api{
+    color: red;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 15px; 
 }

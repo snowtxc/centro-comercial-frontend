@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '@services/authentication/authentication.service';
 
 //Services
 
-import {HeaderSidebarService} from "../../../services/header-sidebar/header-sidebar.service";
+import {HeaderSidebarService} from "@services/header-sidebar/header-sidebar.service";
 
 
 declare var $:any;
@@ -17,7 +18,7 @@ export class HeaderComponent implements OnInit {
   
 
 
-  constructor(private headerSidebar:HeaderSidebarService) { }
+  constructor(private headerSidebar:HeaderSidebarService,private _auth:AuthenticationService) { }
 
   ngOnInit(): void {
     $(".dropdown-trigger").dropdown();
@@ -27,6 +28,12 @@ export class HeaderComponent implements OnInit {
 
   pushNavMenu(){
      this.headerSidebar.toggleSidebar();
+
+  }
+
+  onPushLogout(){
+    this._auth.destroyUserSesion();
+    
 
   }
 

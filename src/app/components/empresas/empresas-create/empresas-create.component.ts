@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,Validators,FormBuilder} from '@angular/forms';
 
+//Services
+import { EmpresaService } from '@services/empresa/empresa.service';
+
+declare var M:any;
+
 
 @Component({
   selector: 'app-empresas-create',
@@ -13,8 +18,11 @@ export class EmpresasCreateComponent implements OnInit {
   public addEmpresaForm: FormGroup;
   public submitedEmpresaForm = false;
 
+  public logo? : File;
+  public errorFormatFile  = false;
 
-  constructor(private _builderForm:FormBuilder) {
+
+  constructor(private _builderForm:FormBuilder,private _empresaService:EmpresaService) {
     this.addEmpresaForm = this._builderForm.group({
       name: ['',Validators.required],
       razon_social: ['',Validators.required],
@@ -26,7 +34,6 @@ export class EmpresasCreateComponent implements OnInit {
       celular: ['', [Validators.required, Validators.pattern("^[0-9]*$")] ],
       nro_bps: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       nro_referencia: ['', Validators.pattern("^[0-9]*$")],
-      logo:  ['',Validators.required],
       rubro: ['',Validators.required],
       rubro_secundario: [''],
       departamento: ['',Validators.required],
@@ -38,10 +45,13 @@ export class EmpresasCreateComponent implements OnInit {
       username_user_empresa: ['',Validators.required],
   
     })
-   
+
+
   }
 
   ngOnInit(): void {
+    var elems = document.querySelectorAll('.datepicker'); 
+    var instances = M.Datepicker.init(elems);
   }
 
 
@@ -49,9 +59,27 @@ export class EmpresasCreateComponent implements OnInit {
     console.log(this.addEmpresaForm.controls['rut'].value.length)
     this.submitedEmpresaForm = true;
     if(this.addEmpresaForm.invalid){
-      console.log(this.addEmpresaForm.invalid)
       return;
     }
-    console.log("submit!");
+
+    if (!this.logo || this.errorFormatFile){
+      return;
+    }
+
+    console.log(this.addEmpresaForm.controls);
+    this.addEmpresaForm.reset();
+    
+  }
+
+
+  fileChangeEvent($event:any){
+    this.errorFormatFile = false;
+    const  file = $event.target.files[0];
+    this.logo = file;
+    if (file.type == 'image/png' || file.type == 'image/jpg' || file.type == 'image/jpeg'){
+      return;
+    }
+    this.errorFormatFile = true;
+ 
   }
 }

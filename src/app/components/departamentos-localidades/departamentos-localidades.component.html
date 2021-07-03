@@ -25,10 +25,10 @@
 <div id="addLocalidadModal" class="modal" [formGroup]="formAddLocalidad" (ngSubmit)="onSubmitAddLocalidad()">
     <form [formGroup]="formAddLocalidad" (ngSubmit)="onSubmitAddLocalidad()">
         <div class="modal-content">
-            <h5>Agregar localidad para San Jose</h5>
+            <h5>Agregar localidad para {{selectedNameDep}}</h5>
             <label>Nombre:</label>
             <div class="error-validation" *ngIf="formAddLocalidad.invalid && submitedFormLocalidad">
-                <span>Nombre de localidad es requerido</span>
+                <span *ngIf="formAddLocalidad.controls['name_localidad'].errors?.required">Nombre de localidad es requerido</span>
             </div>
             <input type="text" name="nombre_localidad" formControlName="name_localidad">
         </div>
@@ -54,82 +54,29 @@
         </div>
 
         <div ><a class="waves-effect waves-light btn modal-trigger" id="btnAddDep" href="#addDepModal">AGREGAR DEPARTAMENTO</a></div>
-
-        <div class="departamentos-list">
+        <div class="departamentos-list" >
             <ul class="collapsible">
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">location_on</i>San Jose</div>
+                <li *ngFor="let departamento of pageOfItemsDeps" (click)="selectDep(departamento.id,departamento.name)">
+                    <div class="collapsible-header"><i class="material-icons">location_on</i>{{departamento.name}}</div>
                     <div class="collapsible-body">
                         <div class="departamento-info">
                             <a class="waves-effect waves-light btn modal-trigger" href="#addLocalidadModal" id="btnAddLocalidad">Agregar localidad</a>
 
                             <h5>LOCALIDADES:</h5>
                             <ul>
-                                <li><a href="#"><strong>Libertad</strong></a></li>
-                                <li><a href="#"><strong>Ecilda Paullier</strong></a></li>
-                                <li><a href="#"><strong>Colonia Wilson</strong></a></li>
-                                <li><a href="#"><strong>Kiyu</strong></a></li>
-                                <li><a href="#"><strong>Ciudad Del Plata</strong></a></li>
-                                <li><a href="#"><strong>San Jose de Mayo</strong></a></li>
-                            </ul>
+                                <li *ngFor="let localidad of departamento.Localidads"><div class="chip">{{localidad.name}}<i class="close material-icons" (click)="deleteLocalidad(localidad.id)">close</i></div></li>
+                            </ul> 
                         </div>
                         
                     </div>
-                </li>
-            
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">location_on</i>San Jose</div>
-                    <div class="collapsible-body">
-                        <div class="departamento-info">
-                            <h5>LOCALIDADES:</h5>
-                            <ul>
-                                <li><a href="#"><strong>Libertad</strong></a></li>
-                                <li><a href="#"><strong>Ecilda Paullier</strong></a></li>
-                                <li><a href="#"><strong>Colonia Wilson</strong></a></li>
-                                <li><a href="#"><strong>Kiyu</strong></a></li>
-                                <li><a href="#"><strong>Ciudad Del Plata</strong></a></li>
-                                <li><a href="#"><strong>San Jose de Mayo</strong></a></li>
-                            </ul>
-                        </div>
-                
-                    </div>
-                </li>
+                </li>   
 
-
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">location_on</i>San Jose</div>
-                    <div class="collapsible-body">
-                        <div class="departamento-info">
-                            <h5>LOCALIDADES:</h5> 
-
-                            <ul>
-                                <li>
-                                    <div class="chip">
-                                        Libertad
-                                        <i class="close material-icons">close</i>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="chip">
-                                        Libertad
-                                        <i class="close material-icons">close</i>
-                                    </div>
-                                </li>
-                                <li><a href="#"><strong>Colonia Wilson</strong></a></li>
-                                <li><a href="#"><strong>Kiyu</strong></a></li>
-                                <li><a href="#"><strong>Ciudad Del Plata</strong></a></li>
-                                <li><a href="#"><strong>San Jose de Mayo</strong></a></li>
-                            </ul>
-                        </div>
-                
-                    </div>
-                </li>
             </ul>
 
         </div>
 
         <div class="pagination">
-            <jw-pagination [items]="items" (changePage)="onChangePage($event)"></jw-pagination>
+            <jw-pagination [items]="departamentosArr"  (changePage)="onChangePage($event)"></jw-pagination>
         </div>
         
 

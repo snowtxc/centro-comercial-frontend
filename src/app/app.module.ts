@@ -3,6 +3,11 @@ import { NgModule } from '@angular/core';
 import  {FormsModule} from "@angular/forms";
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
+//Interceptor
+
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 
 
@@ -19,14 +24,16 @@ import { DashboardComponent } from '@components/dashboard/dashboard.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { SidebarMenuComponent } from './components/shared/sidebar-menu/sidebar-menu.component';
 import { EmpresasCreateComponent } from '@components/empresas/empresas-create/empresas-create.component';
-
+import { PersonasCreateComponent } from '@components/personas/personas-create/personas-create.component';
+import { UserInfoComponent } from '@components/user-info/user-info.component';
+import { NotFoundComponent } from '@components/not-found/not-found.component';
 
 
 import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 
 import { JwPaginationModule } from 'jw-angular-pagination';
-import { PersonasCreateComponent } from './components/personas/personas-create/personas-create.component';
+
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin
@@ -47,7 +54,9 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     InicioComponent,
     SidebarMenuComponent,
     EmpresasCreateComponent,
-    PersonasCreateComponent
+    PersonasCreateComponent,
+    UserInfoComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +67,15 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,     
+      useClass: AuthInterceptor,      
+      multi: true                        
+
+
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

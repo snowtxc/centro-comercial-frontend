@@ -1,19 +1,30 @@
 <div class="login_container">
     <h3>INGRESAR</h3>
 
-    <form class="login-form">
+    <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
         <div class="login-form-input">
-            <input placeholder="Email" id="first_name" type="text" class="validate">
+            <input placeholder="Email" id="first_name" type="text" class="validate" formControlName="email">
+            <div class="error-validation" *ngIf="loginForm.invalid && submitedForm">
+                <span *ngIf="loginForm.controls['email'].errors?.required">Email es requerido</span>
+            </div>
         </div>
 
-        <div class="login-form-input">
-            <input placeholder="Contraseña" id="first_name" type="text" class="validate">
-        </div>
 
         <div class="login-form-input">
-            <a class="waves-effect waves-light btn">INGRESAR</a>
+            <input placeholder="Contraseña" id="first_name" type="password" class="validate" formControlName="password">
+            <div class="error-validation" *ngIf="loginForm.invalid && submitedForm">
+                <span *ngIf="loginForm.controls['password'].errors?.required">Contraseña es requerido</span>
+            </div>
+         </div>
+
+        <div class="login-form-input submit">
+                <button class="btn waves-effect waves-light" id="button" type="submit" name="action">INGRESAR</button>
         </div>
 
+        <div class="error-api" *ngIf="error">
+            <span >{{msgError}}</span>
+        </div>
     </form>
 
 </div>
+
