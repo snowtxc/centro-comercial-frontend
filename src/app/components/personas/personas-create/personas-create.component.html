@@ -51,9 +51,9 @@
                    
                     <select class="browser-default" formControlName="estado">
                         <option value="" disabled selected>Elige un estado</option>
-                        <option value="1">activo</option>
-                        <option value="2">inactivo</option>
-                        <option value="3">Option 3</option>
+                        <option value="activo">activo</option>
+                        <option value="inactivo">inactivo</option>
+
                     </select>
                     <div class="error-validation" *ngIf="addPersonForm.invalid && submitedFormPerson" >
                         <span *ngIf="addPersonForm.controls['estado'].errors?.required">Estado es requerido</span>

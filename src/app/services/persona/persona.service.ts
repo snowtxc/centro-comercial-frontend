@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 
 import {HttpClient,HttpHeaders} from "@angular/common/http";
+
 
 import  {environment} from "src/environments/environment";
 
@@ -14,13 +15,20 @@ import { retry,catchError } from 'rxjs/operators';
 })
 export class PersonaService {
 
-  constructor(private _http:HttpClient) { }
+  
+  
+
+  constructor(private _http:HttpClient) {
+     
+   }
+
+  
  
  
   create(body_content: any): Observable<any> {
     const headers = new HttpHeaders();
 
-    return this._http.post(environment.url + "/contactos", body_content, { headers: headers }).pipe(catchError((err) => {
+    return this._http.post(environment.url + "contactos", body_content, { headers: headers }).pipe(catchError((err) => {
       retry(3);
       return throwError(err.error);
     }));
@@ -29,7 +37,7 @@ export class PersonaService {
 
   getPersonas(): Observable<any> {
 
-    return this._http.get(environment.url + "/contactos").pipe(catchError((err) => {
+    return this._http.get(environment.url+"/contactos").pipe(catchError((err) => {
       retry(3);
       return throwError(err.error);
     }));
@@ -37,7 +45,7 @@ export class PersonaService {
   }
 
 
-  getPersonaById(id: number): Observable<any>{
+  getPersonaById(id: any): Observable<any>{
     return this._http.get(environment.url + "contactos/" + id).pipe(catchError((err) => {
       retry(3);
       return throwError(err.error);
@@ -48,7 +56,7 @@ export class PersonaService {
   editPersona(id: number, body_content: any): Observable<any>{
     const headers = new HttpHeaders();
 
-    return this._http.put(environment.url + "/contactos/" + id, body_content, { headers: headers }).pipe(catchError((err) => {
+    return this._http.put(environment.url + "contactos/" + id, body_content, { headers: headers }).pipe(catchError((err) => {
       retry(3);
       return throwError(err.error);
     }));
@@ -63,8 +71,13 @@ export class PersonaService {
 
   }
 
-  asociateEmpresa(id_persona: number, id_empresa: number): Observable<any>{
-    return this._http.get(environment.url + "/contactos/" + id_persona + "/empresas/" + id_empresa +"");
+  asociateEmpresa(id_persona: number, id_empresa: number,body_content:any): Observable<any>{
+    return this._http.post(environment.url + "contactos/" + id_persona + "/empresas/" + id_empresa,body_content);
+  }
+
+  checkIfEmailExist(email: string): Observable<any> {
+    return this._http.get(environment.url+"/auth/check_email/"+email);
+
   }
 
 

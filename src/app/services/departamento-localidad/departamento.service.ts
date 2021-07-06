@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, throwError } from 'rxjs';
 
 import { catchError,retry } from 'rxjs/operators';
 
@@ -12,17 +12,19 @@ import { environment } from 'src/environments/environment';
 })
 export class DepartamentoService {
 
-  
+
+  public currentDepartamentosSubject: Subject<any>;
+
 
   constructor(private _http:HttpClient) { 
-    
+    this.currentDepartamentosSubject = new Subject();
+
   }
 
 
   create(body_content: any): Observable<any> {
     const headers = new HttpHeaders();
-                    
-
+                   
     return this._http.post(environment.url + "/departamentos", body_content, { headers: headers }).pipe(catchError((err) => {
       retry(3);
       return throwError(err.error);
@@ -30,12 +32,16 @@ export class DepartamentoService {
 
   }  
 
-  getDepartamentos(): Observable<any> {
-
-    return this._http.get(environment.url + "/departamentos").pipe(catchError((err) => {
+  getDepartamentos(): any {
+    let departmentData$ =  this._http.get(environment.url + "/departamentos").pipe(catchError((err) => {
       retry(3);
       return throwError(err.error);
     }));
+
+    departmentData$.subscribe(data =>{
+      console.log('sadasd');
+      this.currentDepartamentosSubject.next(data);
+    });
 
   }
 

@@ -21,8 +21,8 @@ export class DepartamentosLocalidadesComponent implements OnInit {
 
   pageOfItemsDeps: Array<any> = [];
 
-  public departamentosArr : Array<Departamento> = [];
-
+  public departamentosArr : any = [];
+  
 
   //FORMS
   public formAddDep: FormGroup;
@@ -35,6 +35,10 @@ export class DepartamentosLocalidadesComponent implements OnInit {
 
   public selectedIdDep: number = 0;
   public selectedNameDep: string = '';
+
+  public searchValue = '';
+
+
 
 
   constructor(private _builderForm: FormBuilder,private _departamentoService:DepartamentoService,private _localidadService:LocalidadService) {
@@ -59,7 +63,13 @@ export class DepartamentosLocalidadesComponent implements OnInit {
       var modalElems = document.querySelectorAll('.modal');
       var instances = M.Modal.init(modalElems);
 
-      this.loadDepartamentos();
+
+      //Emits
+      this._departamentoService.getDepartamentos();
+       
+      //Event load
+      this.eventLoadDepartamentos();
+
 
       
   }
@@ -71,12 +81,12 @@ export class DepartamentosLocalidadesComponent implements OnInit {
 
 
 
-   loadDepartamentos(){
-    this._departamentoService.getDepartamentos().subscribe(departamentos =>{
-      this.departamentosArr = departamentos;
-    },
-    error =>{  })
-  }
+   eventLoadDepartamentos(){
+      this._departamentoService.currentDepartamentosSubject.subscribe(data =>{
+        this.departamentosArr = data;
+      })
+  
+   }
 
   
   onSubmitAddDep(){
@@ -90,7 +100,7 @@ export class DepartamentosLocalidadesComponent implements OnInit {
     this._departamentoService.create(body_content).subscribe((data) =>{
       $("#addDepModal").modal("close");
       M.toast({ html: 'Departamento creado correctamente!', classes: 'rounded' });
-      this.loadDepartamentos();
+      this._departamentoService.getDepartamentos();
       
     },  error =>{  M.toast({ html: error.error, classes: 'rounded' }); })
     this.submitedFormDep = false;
@@ -119,7 +129,7 @@ export class DepartamentosLocalidadesComponent implements OnInit {
     this._localidadService.create(body_content).subscribe(result =>{
       $("#addLocalidadModal").modal("close");
       M.toast({ html: 'Localidad creada correctamente!', classes: 'rounded' });
-      this.loadDepartamentos();
+      this._departamentoService.getDepartamentos();
     },
     error =>{
       console.log(error);

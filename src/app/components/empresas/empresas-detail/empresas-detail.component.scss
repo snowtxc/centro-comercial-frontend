@@ -51,3 +51,33 @@
 .error-validation{
     color: red; 
 }
+
+.empty_persons{
+    font-size: 20px;
+    text-align: center;
+    padding: 20px;
+}
+
+
+.delete-button{
+    float: right;
+
+}
+
+
+.buttons{
+    display: flex;
+}
+
+.buttons button{
+    border-radius: 20px;
+
+}
+
+#btnDelete{
+    background-color: red;
+}
+
+.invalid_file{
+    color: red;
+}

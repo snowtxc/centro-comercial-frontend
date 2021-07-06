@@ -10,20 +10,24 @@
 <div id="push-button">
     <label>Estado</label>
     <div class="switch">
+        <input type="checkbox" />
+
         <label>
             Todos
-            <input type="checkbox">
+            <input type="checkbox" (change)="onCheckBoxChange($event)">
             <span class="lever"></span>
-            Activo
+            Activo  
         </label>
     </div>
 </div>
 
 
 
-<div class="personas-search">
-    <input placeholder="buscador" id="empresa_buscador" type="text" class="validate">
 
+
+<div class="personas-search">
+    <input placeholder="buscador" id="empresa_buscador" type="text" class="validate" [(ngModel)]="inputSearch"> 
+    
 </div>
 
 <div >
@@ -33,126 +37,51 @@
 
 
 <div class="personas-list">
-    <div class="personas-list-elements">
+
+    <div class="emptyPersonas" *ngIf="personasArr.length == 0">No se encontro ninguna persona aun</div>
+
+    <p *ngIf="!(pageOfItemsPersonas | filterByName:personasArr:inputSearch) && personasArr.length > 0" class="emptyPersonas">No se encontro  resultado</p>
+    <div class="personas-list-elements ">
         <ul class="collapsible">
-            <li>
-                <div class="collapsible-header"><i class="material-icons">person</i>Daniel Diaz</div>
+            <li *ngFor="let persona of pageOfItemsPersonas | filterByName:personasArr:inputSearch">
+                <div class="collapsible-header"><i class="material-icons">person</i>{{persona.Nombre}} {{persona.Apellido}}</div>
                 <div class="collapsible-body">
 
-                    <div ><a class="waves-effect waves-light btn" id="editBtnInfo" (click)="onClickEdit()">Editar<i class="material-icons">border_color</i></a></div>
+                    <div ><a class="waves-effect waves-light btn" id="editBtnInfo" (click)="onClickEdit(persona.id)">Editar<i class="material-icons">border_color</i></a></div>
                     <div class="persona-info">
                         <h5>INFORMACION:</h5>
 
                         <ul>
-                            <li><strong>email:</strong><span>danieldiaz@gmail.com</span></li>
-                            <li><strong>celular:</strong><span>091234234</span></li>
+                            <li><strong>email:</strong><span>{{persona.email}}</span></li>
+                            <li><strong>celular:</strong><span>{{persona.celular}}</span></li>
                             <li><strong>Estado:</strong>
-                                <div class="chip estado-activo">
+                                <div class="chip estado-activo" *ngIf="persona.estado == 'activo'">
                                     activo
                                 </div>
+
+                                 <div class="chip" *ngIf="persona.estado == 'inactivo'">
+                                     inactivo
+                                 </div>
                             
                             </li>
                         </ul>
                     </div>
                     <div class="persona-empresas-info">
                         <h5>Empresas asociadas</h5>
-        
+
+                        <div *ngIf="persona.Empresas.length == 0">No tiene empresas asociadas</div>
+
                         <ul>
-                            <li><a href="#"></a>Avance software / CEO</li>
-                            <li>Centro comercial SJI / Socio </li>
-                        </ul>
-                    </div>
-                </div>
-            </li>
-
-            <li>
-                <div class="collapsible-header"><i class="material-icons">person</i>Daniel Diaz</div>
-                <div class="collapsible-body">
-                    <div id="editBtnInfo"><a class="waves-effect waves-light btn">Editar<i class="material-icons">border_color</i></a></div>
-
-                    <div class="persona-info">
-                        <h5>INFORMACION:</h5>
-                        <ul>
-                            <li><strong>email:</strong><span>danieldiaz@gmail.com</span></li>
-                            <li><strong>celular:</strong><span>091234234</span></li>
-                            <li><strong>Estado:</strong>
-                                <div class="chip estado-activo">
-                                activo
-                            </div></li>
-                        </ul>
-                    </div>
-                    <div class="persona-empresas-info">
-                        <h5>Empresas asociadas</h5>
-                        <ul>
-                            <li><a href="#"></a>Avance software / CEO</li>
-                            <li>Centro comercial SJI / Socio </li>
-                        </ul>
-                    </div>
-                </div>
-            </li>
-
-
-            <li>
-                <div class="collapsible-header"><i class="material-icons">person</i>Daniel Diaz</div>
-                
-                
-                <div class="collapsible-body">
-                    <div id="editBtnInfo"><a class="waves-effect waves-light btn">Editar<i class="material-icons">border_color</i></a></div>
-
-                    <div class="persona-info">
-                        <h5>INFORMACION:</h5>
-                        <ul>
-                            <li><strong>email:</strong><span>danieldiaz@gmail.com</span></li>
-                            <li><strong>celular:</strong><span>091234234</span></li>
-                            <li><strong>Estado:</strong>
-                                <div class="chip estado-activo">
-                                    activo
-                                </div>
+                            <li *ngFor="let empresa of persona.Empresas"><a href="#"></a>{{empresa.Nombre}}/{{empresa.ContactoEmpresa.relacion}}</li>
                             
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="persona-empresas-info">
-                        <h5>Empresas asociadas</h5>
-                        <ul>
-                            <li><a href="#"></a>Avance software / CEO</li>
-                            <li>Centro comercial SJI / Socio </li>
                         </ul>
                     </div>
                 </div>
             </li>
 
+          
 
-            <li>
-                <div class="collapsible-header"><i class="material-icons">person</i>Daniel Diaz</div>
-                <div class="collapsible-body">
-                    <div id="editBtnInfo"><a class="waves-effect waves-light btn">Editar<i class="material-icons">border_color</i></a></div>
 
-                    
- 
-                    <div class="persona-info">
-                        <h5>INFORMACION:</h5>
-                        <ul>
-                            <li><strong>email:</strong><span>danieldiaz@gmail.com</span></li>
-                            <li><strong>celular:</strong><span>091234234</span></li>
-                            <li><strong>Estado:</strong>
-                                <div class="chip">
-                                    inactivo
-                                </div>
-                            
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="persona-empresas-info">
-                        <h5>Empresas asociadas</h5>
-                        <ul>
-                            <li><a href="#"></a>Avance software / CEO</li>
-                            <li>Centro comercial SJI / Socio </li>
-                        </ul>
-                    </div>
-                </div>
-            </li>
-           
 
         </ul>
     </div>
@@ -160,7 +89,7 @@
 
 
     <div class="pagination">
-        <jw-pagination [items]="items" (changePage)="onChangePage($event)"></jw-pagination>
+        <jw-pagination [items]="personasArr" (changePage)="onChangePage($event)"></jw-pagination>
     </div>
 
 

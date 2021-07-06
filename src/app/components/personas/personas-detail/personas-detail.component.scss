@@ -62,3 +62,51 @@
     color: red;
 }
 
+
+.btn-delete{
+    float: left;
+    
+}
+
+.btn-delete button{
+    background-color: red;
+    color: #fff;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    
+}
+
+.not_exist_empresa{
+    font-size: 20px;
+    text-align: center;
+    padding: 30px;
+}
+
+.select_empresa{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.collection li:hover{
+    background: gray;
+    cursor: pointer;
+    color: #fff;
+}
+
+
+
+
+
+
+.empresa_items div{
+
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    margin: 10px;
+}
+
+.empresa_items div:hover{
+    background: gray;
+    cursor: pointer;
+}
+

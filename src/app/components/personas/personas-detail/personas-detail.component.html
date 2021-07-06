@@ -2,32 +2,46 @@
 <!--MODALS-->
 <div id="asociarEmpresaModal" class="modal">
     <div class="modal-content">
-        <h4>Asociar empresa a daniel diaz</h4>
-        <form>
-            <div>
-                <label>Browser Select</label>
-                <select class="browser-default">
-                    <option value="" disabled selected>Escoge una empresa</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
-                </select>
+        <h4>Asociar empresa a {{nombre}} {{apellido}}</h4>
 
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="relacion" type="text" class="validate" [(ngModel)]="relacionInput">
+                <label for="relacion">Relacion con la empresa</label>
+                <div *ngIf="relacionRequired">
+                    <span>Relacion es requerido</span>
+
+                </div>
             </div>
+        </div>
 
-
-            <div>
-                <input placeholder="Relacion" id="first_name" type="text" class="validate">
-            </div>
-        
-
-        </form>
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">ASOCIAR</a>
+        <div class="container_empresas">
+            <ul class="collection">
+                <li class="collection-item avatar" *ngFor="let empresa of allEmpresasArr" (click)="asociarEmpresa(empresa.id)">
+                    <img src="http://localhost:3712/api/empresas/getLogo/{{empresa.url_logo}}" alt="" class="circle"> 
+                    <span class="title">{{empresa.Nombre}}</span>
+                    <p>Direccion: {{empresa.Direccion}} <br>
+                      Rut: {{empresa.rut}}
+                    </p>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 
+
+
+       
+
+<!-- Modal Structure -->
+<div id="darDeBajaModal" class="modal">
+    <div class="modal-content">
+        <h4>Seguro que quieres dar de baja a {{nombre}} {{apellido}} ?</h4>
+    </div>
+    <div class="modal-footer">
+        <a (click)="deletePersona()" class="modal-close waves-effect waves-green btn-flat">Aceptar</a>
+    </div>
+</div>
 
 
 
@@ -49,30 +63,41 @@
     
     </div>
 
+    
+
+    <div class="btn-delete">
+        <button class="btn waves-effect waves-light modal-trigger"  href="#darDeBajaModal" type="submit" (click)="onSubmitEditPerson()" name="action"
+            id="btnDelete">Dar de baja
+        </button>
+    </div>
+
     <div class="row">
         <form class="col s12" [formGroup]="editPersonForm">
+            <label for="apellido">Nombre</label>
             <div class="row">
+                
                 <div class="input-field col s6">
-                    <input id="nombre" type="text" class="validate" formControlName="nombre">
-                    <label for="nombre">Nombre</label>
+                    <input id="nombre" type="text" class="validate" formControlName="nombre" [(ngModel)]= "nombre">
                     <div class="error-validation" *ngIf="editPersonForm.invalid && submitedFormPerson">
                         <span *ngIf="editPersonForm.controls['nombre'].errors?.required">Nombre es requerido</span>
                     </div>
+                
                 </div>
-                <div class="input-field col s6">
-                    <input id="apellido" type="text" class="validate" formControlName="apellido">
-                    <label for="apellido">Apellido</label>
+                
+
+                <label for="apellido">Apellido</label>
+                <div class="input-field col s6">                    
+                    <input id="apellido" type="text" class="validate" formControlName="apellido" [(ngModel)]= "apellido">
                     <div class="error-validation" *ngIf="editPersonForm.invalid && submitedFormPerson">
                         <span *ngIf="editPersonForm.controls['apellido'].errors?.required">Apellido es requerido</span>
                     </div>
                 </div>
             </div>
 
-
+            <label for="apellido">Apellido</label>
             <div class="row">
                 <div class="input-field col s6">
-                    <input id="email" type="email" class="validate" formControlName="email">
-                    <label for="email">Email:</label>
+                    <input id="email" type="email" class="validate" formControlName="email" [(ngModel)]= "email">
                     <div class="error-validation" *ngIf="editPersonForm.invalid && submitedFormPerson">
                         <span *ngIf="editPersonForm.controls['email'].errors?.required">Email es requerido</span>
                         <span
@@ -80,9 +105,10 @@
                             invalido</span>
                     </div>
                 </div>
+                <label for="apellido">Celular:</label>
+                
                 <div class="input-field col s6">
-                    <input id="celular" type="text" class="validate" formControlName="celular">
-                    <label for="celular">Celular:</label>
+                    <input id="celular" type="text" class="validate" formControlName="celular" [(ngModel)]= "celular">
                     <div class="error-validation" *ngIf="editPersonForm.invalid && submitedFormPerson"> 
                         <span *ngIf="editPersonForm.controls['celular'].errors?.required">Celular es requerido</span>
                         <span *ngIf="!(editPersonForm.controls['celular'].errors?.required)  && (editPersonForm.controls['celular'].value.length != 9)">Celular debe tener 9 digitos</span>
@@ -92,15 +118,13 @@
                 </div>
 
     
-
+           
                 <div class="input-field col s6">
-
+                    <div>Estado actual: {{estado}}</div>
                     <select class="browser-default" formControlName="estado">
-                        <option value="" disabled selected>Elige un estado</option>
-                        <option value="1">activo</option>
-                        <option value="2">inactivo</option>
-                        <option value="3">Option 3</option>
-
+                        <option value="" disabled selected>Elige un estado</option> 
+                        <option value="activo">activo</option>
+                        <option value="inactivo">inactivo</option>
                     </select>
                     <div class="error-validation" *ngIf="editPersonForm.invalid && submitedFormPerson">
                         <span *ngIf="editPersonForm.controls['estado'].errors?.required">Estado es requerido</span>
@@ -119,18 +143,19 @@
         <div class="sub-title"><h4>Empresas asociadas</h4></div>
 
         <div id="btnAsociarEmpresa"><a class="waves-effect waves-light btn modal-trigger" id="btnAsociarEmpresa" href="#asociarEmpresaModal">asociar empresa</a></div>
+         
 
+        <div *ngIf="empresasAsociadasArr.length == 0" class="not_exist_empresa">No existe ninguna empresa asociada a {{nombre}} aun</div>
         <div class="empresas-list">
             <ul class="collection">
-                <li class="collection-item">
-                    <span>Avance Software/CEO</span> 
+                <li class="collection-item" *ngFor="let empresa of empresasAsociadasArr">
+
+                    <span>{{empresa.Nombre}}/{{empresa.ContactoEmpresa.relacion}}</span> 
                     <div class="item-clear-btn">
                         <i class="material-icons">clear</i>
                     </div>
                 </li>
-                <li class="collection-item">Altech/Socio</li>
-                <li class="collection-item">Junta departamental/ Inversor</li>
-                <li class="collection-item">Alvin</li>
+            
             </ul>
         </div>
     </div>

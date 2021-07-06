@@ -5,7 +5,7 @@
     <div class="title"> <h3>Agregar empresa</h3></div>
 
     <div class="row">
-        <form class="col s12" [formGroup]="addEmpresaForm" (ngSubmit)="onSubmitAddEmpresa()" enctype='multipart/form-data'>
+        <form class="col s12" [formGroup]="addEmpresaForm" (ngSubmit)="onSubmitAddEmpresa()" enctype = "multipart/form-data">
             <div class="row">
                 <div class="input-field col s6">
                     <input id="nombre" type="text" class="validate" formControlName="name">
@@ -45,12 +45,12 @@
 
                     </div>
                 </div>
-                <div class="input-field col s6">
+                <div class="input-field col s6"> 
             
                     <select class="browser-default" formControlName="estado">
                         <option value="" disabled selected>Elige un estado</option>
-                        <option value="1">activo</option>
-                        <option value="2">inactivo</option>
+                        <option value="activo">activo</option>
+                        <option value="inactivo">inactivo</option>
                     </select>
                     <div class="error-validation" *ngIf="addEmpresaForm.invalid && submitedEmpresaForm">
                         <span *ngIf="addEmpresaForm.controls['estado'].errors?.required">Estado es requerido</span>
@@ -62,14 +62,16 @@
     
             <div class="row">
                 <div class="input-field col s6">
-                    <input id="email" type="email" class="validate" formControlName="email"> 
-                    <label for="email" >Email:</label>
-                    <div class="error-validation" *ngIf="addEmpresaForm.invalid && submitedEmpresaForm">
+                    <input id="email" type="email" class="validate" formControlName="email" #inputEmailEmpresa> 
+                    <label for="email">Email:</label>
+                    
+                    <div class="error-validation" *ngIf="(addEmpresaForm.invalid && submitedEmpresaForm) || emailEmpresaExist">
                         <span *ngIf="addEmpresaForm.controls['email'].errors?.required">Email es requerido</span>
                         <span *ngIf="addEmpresaForm.controls['email'].errors?.email">Email invalido</span>
-
+                        <span *ngIf="emailEmpresaExist ">Este email ya esta en uso</span>
                     </div>
                 </div>
+
                 <div class="input-field col s6">
                     <input id="telefono" type="text" class="validate" formControlName="telefono">
                     <label for="Telefono">Telefono:</label>
@@ -116,7 +118,7 @@
                     <div class="file-field input-field">
                         <div class="btn">
                             <span>Importar Logo</span>
-                            <input type="file" (change)="fileChangeEvent($event)">
+                            <input type="file" (change)="fileChangeEvent($event)" id="logo">
                         </div>
                         <div class="file-path-wrapper">
                             <input class="file-path validate" type="text">
@@ -131,39 +133,28 @@
             </div>
     
     
-            <div>
-                <label>Rubro</label>
-                <select class="browser-default" formControlName="rubro">
-                    <option value="" disabled selected>Choose your option</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
-                </select>
-                <div class="error-validation" *ngIf="addEmpresaForm.invalid && submitedEmpresaForm">
-                    <span *ngIf="addEmpresaForm.controls['rubro'].errors?.required">Rubro es requerido</span>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="rubro" type="text" class="validate" formControlName="rubro">
+                    <label for="rubro">Rubro</label>
+                    <div class="error-validation" *ngIf="addEmpresaForm.invalid && submitedEmpresaForm">
+                        <span *ngIf="addEmpresaForm.controls['rubro'].errors?.required">Rubro es requerido</span>
+                    </div>
                 </div>
-            </div>
-    
-            <div>
-                <label>Rubro Secundario(Opcional)</label>
-                
-                <select class="browser-default" formControlName="rubro_secundario">
-                    <option value="" disabled selected>Choose your option</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
-                </select>
+
+                <div class="input-field col s6">
+                    <input id="rubro_secundario" type="text" class="validate" formControlName="rubro_secundario">
+                    <label for="rubro_secundario">Rubro secundario(Opcional)</label>
+                </div>
             </div>
     
            
 
             <div>
                 <label>Departamento</label>
-                <select class="browser-default" formControlName="departamento">
+                <select class="browser-default" formControlName="departamento" (ngModelChange)="mySelectDepartment($event)" > 
                     <option value="" disabled selected>Choose your option</option>
-                    <option value="1">San Jose</option>
-                    <option value="2">Colonia</option>
-                    <option value="3">Montevideo</option>
+                    <option  *ngFor="let departamento of departamentosArr"  [value]="departamento.id">{{departamento.name}}</option>
                 </select>
                 <div class="error-validation" *ngIf="addEmpresaForm.invalid && submitedEmpresaForm">
                      <span *ngIf="addEmpresaForm.controls['departamento'].errors?.required">Departamento es requerido</span>
@@ -171,23 +162,20 @@
                 </div>
 
                 <label>Localidad</label>
-                <select class="browser-default" formControlName="localidad">
+                <select class="browser-default" formControlName="localidad" (ngModelChange)="selectLocalidad($event)"> 
                     <option value="" disabled selected>Choose your option</option>
-                    <option value="1">Libertad</option>
-                    <option value="2">Ciudad del plata</option>
-                    <option value="3">Kiyu</option>
+                    <option *ngFor="let localidad of localidadesArr" [value]="localidad.id" >{{localidad.name}}</option>
                 </select>
                 <div class="error-validation" *ngIf="addEmpresaForm.invalid && submitedEmpresaForm">
                         <span *ngIf="addEmpresaForm.controls['localidad'].errors?.required">Localidad es requerido</span>
                 </div>
             </div>
 
-            <div>
+            <div> 
                 <label>Fecha de inicio de la empresa</label>
-                <input type="text" class="datepicker" formControlName="fecha_inicio_empresa">
-                <div class="error-validation" *ngIf="addEmpresaForm.invalid && submitedEmpresaForm">
-                    <span *ngIf="addEmpresaForm.controls['fecha_inicio_empresa'].errors?.required">Fecha de inicio de la empresa es requerido</span>
-                    
+                <input type="text" class="datepicker"  id="fechaEmpresa" >
+                <div class="error-validation" *ngIf="fechaRequired">
+                    <span>Fecha de inicio de la empresa es requerido</span> 
                 </div>
             </div>
     
@@ -212,12 +200,14 @@
                 <h5>Usuario de la empresa</h5>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="email" type="email" class="validate" formControlName="email_user_empresa">
+                        <input id="email" type="email" class="validate" formControlName="email_user_empresa" #inputEmailUser>
                         <label for="email">Email:</label>
-                        <div class="error-validation" *ngIf="addEmpresaForm.invalid && submitedEmpresaForm">
+                        
+                        <div class="error-validation" *ngIf="(addEmpresaForm.invalid && submitedEmpresaForm) || emailUserExist ">
                             <span *ngIf="addEmpresaForm.controls['email_user_empresa'].errors?.required">Email es requerido</span>
                             <span *ngIf="addEmpresaForm.controls['email_user_empresa'].errors?.email">Email invalido</span>
-                        </div>
+                            <span *ngIf="emailUserExist">Este email ya esta en uso</span>
+                        </div> 
                     </div>
                     <div class="input-field col s6">
                         <input id="password" type="password" class="validate" formControlName="password_user_empresa">

@@ -50,29 +50,33 @@
         <div class="title"><h3>DEPARTAMENTOS:</h3></div>
 
         <div class="departamentos-search">
-            <input placeholder="buscador" id="departamentos_buscador" type="text" class="validate">
+            <input placeholder="buscador" id="departamentos_buscador" type="text" class="validate" [(ngModel)]="searchValue">
+  
         </div>
 
         <div ><a class="waves-effect waves-light btn modal-trigger" id="btnAddDep" href="#addDepModal">AGREGAR DEPARTAMENTO</a></div>
-        <div class="departamentos-list" >
-            <ul class="collapsible">
-                <li *ngFor="let departamento of pageOfItemsDeps" (click)="selectDep(departamento.id,departamento.name)">
+        
+        
+        
+        <div class="departamentos-list">
+            <p *ngIf="!(pageOfItemsDeps | filterByNameDepartment:departamentosArr:searchValue)" class="emptyDepartamentos">No se encontro resultado</p>
+
+            <ul class="collapsible"> 
+                <li *ngFor="let departamento of pageOfItemsDeps | filterByNameDepartment:departamentosArr:searchValue"  (click)="selectDep(departamento.id,departamento.name)">
                     <div class="collapsible-header"><i class="material-icons">location_on</i>{{departamento.name}}</div>
                     <div class="collapsible-body">
                         <div class="departamento-info">
                             <a class="waves-effect waves-light btn modal-trigger" href="#addLocalidadModal" id="btnAddLocalidad">Agregar localidad</a>
 
                             <h5>LOCALIDADES:</h5>
+                            <div *ngIf="departamento.Localidads.length == 0">No existe localidad</div>
                             <ul>
                                 <li *ngFor="let localidad of departamento.Localidads"><div class="chip">{{localidad.name}}<i class="close material-icons" (click)="deleteLocalidad(localidad.id)">close</i></div></li>
                             </ul> 
                         </div>
-                        
                     </div>
                 </li>   
-
             </ul>
-
         </div>
 
         <div class="pagination">

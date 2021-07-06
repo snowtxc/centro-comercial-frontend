@@ -4,7 +4,7 @@ import  {FormsModule} from "@angular/forms";
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 //Interceptor
 
 import { AuthInterceptor } from './interceptors/auth.interceptor';
@@ -35,11 +35,22 @@ import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import { JwPaginationModule } from 'jw-angular-pagination';
 
 
+//Pipes
+import { FilterByNamePipe } from './pipes/filterByName/filter-by-name.pipe';
+import { FilterByNameDepartmentPipe } from './pipes/filterByNameDepartment/filter-by-name-department.pipe';
+import { FilterEmpresaPipe } from './pipes/filterEmpresa/filter-empresa.pipe';
+import { FilterByDepartamentoLocalidadPipe } from "./pipes/filterByDepartmentLocalidad/filter-by-departamento-localidad.pipe";
+import { FilterByRubroPipe } from "./pipes/filterByRubro/filter-by-rubro.pipe";
+import { FilterByUniqueNamePipe } from './pipes/filterByUniqueName/filter-by-unique-name.pipe';
+ 
+
+
+
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin
   
 ]);
-
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +67,13 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     EmpresasCreateComponent,
     PersonasCreateComponent,
     UserInfoComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    FilterByNamePipe,
+    FilterByNameDepartmentPipe,
+    FilterEmpresaPipe,
+    FilterByDepartamentoLocalidadPipe,
+    FilterByRubroPipe,
+    FilterByUniqueNamePipe
   ],
   imports: [
     BrowserModule,
@@ -65,7 +82,9 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     JwPaginationModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AutocompleteLibModule
+   
   ],
   providers: [
     {

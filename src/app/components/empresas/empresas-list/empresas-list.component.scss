@@ -14,11 +14,19 @@
     box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
     width: 100%;
     display: flex;
+    justify-content: space-around;
     flex-direction: row;
 }
 
 .empresas-filter-element{
-    margin: 20px;
+    
+    padding: 25px;
+
+}
+
+.empresas-filter-element select{
+    width: 100%;
+
 }
 
 
@@ -54,4 +62,15 @@
 #btnFiltrarEmpresa{
     background-color: #028bd2;
     border-radius: 20px;
+}
+
+.empty-empresas{
+    text-align: center;
+    font-size: 20px;
+    padding: 20px;
+}
+
+.filter-effect{
+    margin-top: 15px;
+    float: right;
 }

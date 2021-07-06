@@ -24,7 +24,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   private addToken(request:HttpRequest<any>){
     const token = this._localStorage.getToken();
-    if (token) {
+    if (token) { 
       let headers = request.headers
         .set('Content-Type', 'application/json')
         .set('Authorization', token);

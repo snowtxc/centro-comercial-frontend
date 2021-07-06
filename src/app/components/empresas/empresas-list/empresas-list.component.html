@@ -5,31 +5,27 @@
     <div class="empresas-filter">
        <div class="empresas-filter-element">
             <label>Departamento:</label>
-            <select class="browser-default">
-                <option value="" disabled selected>Choose your option</option>
-                <option value="1">Option 1</option> 
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
-            </select>
+            <select class="browser-default" (ngModelChange)="mySelectDepartment($event)" [(ngModel)]="departamentoIdFilter">
+                <option value="">Todos</option>
+                <option *ngFor="let departamento of departamentosArr" [value]="departamento.id">{{departamento.name}}</option> 
+            </select>   
+
        </div>
 
        <div class="empresas-filter-element">
             <label>Localidad</label>
-            <select class="browser-default">
-                <option value="" disabled selected>Choose your option</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>      
-                <option value="3">Option 3</option>
-            </select>
+            <select class="browser-default" [(ngModel)]="localidadIdFilter">
+                <option value="" >Todos</option>
+                <option *ngFor="let localidad of localidadesArr" [value]="localidad.id">{{localidad.name}}</option>
+            </select>    
+       </div>               
 
-       </div>
-
-    <div class="empresas-filter-element">
+      <div class="empresas-filter-element" [(ngModel)]="estadoFilterChecked">
         <label>Estado</label>
         <div class="switch">
             <label> 
                 Todas
-                <input type="checkbox">
+                <input type="checkbox" (change)="onCheckBoxChange($event)"/> 
                 <span class="lever"></span>
                 Activo
             </label>
@@ -39,74 +35,56 @@
 
     <div class="empresas-filter-element">
         <label>Rubro:</label>
-        <select class="browser-default">
-            <option value="" disabled selected>Choose your option</option>
-            <option value="1">Option 1</option>
-            <option value="2">Option 2</option>
-            <option value="3">Option 3</option>
+        <select class="browser-default" [(ngModel)]="rubroFilter" (ngModelChange)="mySelectDepartment($event)">
+            <option value="" >todos</option>
+            <option  *ngFor="let rubro of rubrosArr" [value]="rubro.rubro">{{rubro.rubro}}</option>
         </select>
     
     </div>
 
     <div class="empresas-filter-element" >
-        <a class="waves-effect waves-light btn" id="btn-filtar" id="btnFiltrarEmpresa">FILTRAR</a>
         
     </div>
  </div>
 
-
-
-
-
-
+ <div class="filter-effect">
+    <div class="chip" *ngIf="filterActivate">
+        Filter activado
+        <i class="close material-icons">close</i>
+    </div>
+ </div>
 
 
     <div class="empresas-search">
-         <input placeholder="buscador" id="empresa_buscador" type="text" class="validate">
+         <input placeholder="buscador" id="empresa_buscador" type="text" class="validate" [(ngModel)]="inputSearch">
 
     </div>
-
 
     <div>
         <a class="waves-effect waves-light btn" id="btnCreateEmpresa" (click)="onClickAddEmpresa()">AGREGAR NUEVA EMPRESA</a>
     </div>
 
-    <div class="empresas-list">
-        <div class="empresa-list-elements">
-            <ul class="collection">
-                <li class="collection-item avatar" (click)="selectedEmpresa()">
-                    <img src="images/yuna.jpg" alt="" class="circle">
-                    <span class="title">Apple</span>
-                    <p>Direccion: Rivera 780<br>
-                        Rut: 213123
+    <div class="empresas-list">  
+
+        <p *ngIf="!(pageOfItemsEmpresas | filterByName:empresasArr:inputSearch)" class="empty-empresas">No se encontro resultado</p>
+
+        <div class="empty-empresas" *ngIf="empresasArr.length == 0">No hay ninguna empresa registrada</div>
+
+        <div class="empresa-list-elements"> 
+            <ul class="collection">  
+                <li class="collection-item avatar" *ngFor="let empresa of pageOfItemsEmpresas | filterByName:empresasArr:inputSearch | filterEmpresa:estadoFilterChecked | filterByDepartamentoLocalidad:departamentoIdFilter:localidadIdFilter |  filterByRubro:rubroFilter" (click)="selectedEmpresa(empresa.id)">
+                    <img src="http://localhost:3712/api/empresas/getLogo/{{empresa.url_logo}}" alt="" class="circle">
+                    <span class="title">{{empresa.Nombre}}</span>
+                    <p>Direccion: {{empresa.Direccion}}<br> 
+                        Rut: {{empresa.rut}}
                     </p>
                 </li>
-                <li class="collection-item avatar">
-                    <i class="material-icons circle">folder</i>
-                    <span class="title">Title</span>
-                    <p>First Line <br>
-                        Second Line
-                    </p>
-                </li>
-                <li class="collection-item avatar">
-                    <i class="material-icons circle green">insert_chart</i>
-                    <span class="title">Title</span>
-                    <p>First Line <br>
-                        Second Line
-                    </p>
-                </li>
-                <li class="collection-item avatar">
-                    <i class="material-icons circle red">play_arrow</i>
-                    <span class="title">Title</span>
-                    <p>First Line <br>
-                        Second Line
-                    </p> 
-                </li>
+            
             </ul>
         </div>
 
         <div class="pagination">
-            <jw-pagination [items]="items" (changePage)="onChangePage($event)"></jw-pagination>
+            <jw-pagination [items]="empresasArr" (changePage)="onChangePage($event)"></jw-pagination>
         </div>
 
 
