@@ -38,11 +38,9 @@ import { JwPaginationModule } from 'jw-angular-pagination';
 //Pipes
 import { FilterByNamePipe } from './pipes/filterByName/filter-by-name.pipe';
 import { FilterByNameDepartmentPipe } from './pipes/filterByNameDepartment/filter-by-name-department.pipe';
-import { FilterEmpresaPipe } from './pipes/filterEmpresa/filter-empresa.pipe';
-import { FilterByDepartamentoLocalidadPipe } from "./pipes/filterByDepartmentLocalidad/filter-by-departamento-localidad.pipe";
-import { FilterByRubroPipe } from "./pipes/filterByRubro/filter-by-rubro.pipe";
-import { FilterByUniqueNamePipe } from './pipes/filterByUniqueName/filter-by-unique-name.pipe';
- 
+
+
+
 
 
 
@@ -69,11 +67,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     UserInfoComponent,
     NotFoundComponent,
     FilterByNamePipe,
-    FilterByNameDepartmentPipe,
-    FilterEmpresaPipe,
-    FilterByDepartamentoLocalidadPipe,
-    FilterByRubroPipe,
-    FilterByUniqueNamePipe
+    FilterByNameDepartmentPipe
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,7 @@ import { AuthenticationService } from '@services/authentication/authentication.s
 //Services
 
 import {HeaderSidebarService} from "@services/header-sidebar/header-sidebar.service";
+import { UserService } from '@services/user/user.service';
 
 
 declare var $:any;
@@ -16,25 +17,31 @@ declare var $:any;
 })
 export class HeaderComponent implements OnInit {
   
+  username = "";
 
-
-  constructor(private headerSidebar:HeaderSidebarService,private _auth:AuthenticationService) { }
+  constructor(private headerSidebar:HeaderSidebarService,private _auth:AuthenticationService,private _userService:UserService) { }
 
   ngOnInit(): void {
     $(".dropdown-trigger").dropdown();
+    console.log('asdas');
+    this.getUsername();
 
   }
 
 
   pushNavMenu(){
      this.headerSidebar.toggleSidebar();
-
   }
+
 
   onPushLogout(){
     this._auth.destroyUserSesion();
-    
+  }
 
+  getUsername(){
+    this._userService.getUsername().subscribe(username =>{
+      this.username = username;
+    });
   }
 
 }

@@ -27,8 +27,8 @@ export class PersonaService {
  
   create(body_content: any): Observable<any> {
     const headers = new HttpHeaders();
-
-    return this._http.post(environment.url + "contactos", body_content, { headers: headers }).pipe(catchError((err) => {
+    
+    return this._http.post("/api/contactos", body_content, { headers: headers }).pipe(catchError((err) => {
       retry(3);
       return throwError(err.error);
     }));
@@ -37,7 +37,7 @@ export class PersonaService {
 
   getPersonas(): Observable<any> {
 
-    return this._http.get(environment.url+"/contactos").pipe(catchError((err) => {
+    return this._http.get("/api/contactos").pipe(catchError((err) => {
       retry(3);
       return throwError(err.error);
     }));
@@ -46,7 +46,7 @@ export class PersonaService {
 
 
   getPersonaById(id: any): Observable<any>{
-    return this._http.get(environment.url + "contactos/" + id).pipe(catchError((err) => {
+    return this._http.get("/api/contactos/" + id).pipe(catchError((err) => {
       retry(3);
       return throwError(err.error);
     }));
@@ -56,7 +56,7 @@ export class PersonaService {
   editPersona(id: number, body_content: any): Observable<any>{
     const headers = new HttpHeaders();
 
-    return this._http.put(environment.url + "contactos/" + id, body_content, { headers: headers }).pipe(catchError((err) => {
+    return this._http.put("/api/contactos/" + id, body_content, { headers: headers }).pipe(catchError((err) => {
       retry(3);
       return throwError(err.error);
     }));
@@ -64,7 +64,7 @@ export class PersonaService {
   }
 
   deletePersona(id: number): Observable<any> {
-    return this._http.delete(environment.url + "/contactos/" + id).pipe(catchError((err) => {
+    return this._http.delete("/api/contactos/" + id).pipe(catchError((err) => {
       retry(3);
       return throwError(err.error);
     }));
@@ -72,11 +72,11 @@ export class PersonaService {
   }
 
   asociateEmpresa(id_persona: number, id_empresa: number,body_content:any): Observable<any>{
-    return this._http.post(environment.url + "contactos/" + id_persona + "/empresas/" + id_empresa,body_content);
+    return this._http.post("/api/contactos/" + id_persona + "/empresas/" + id_empresa,body_content);
   }
 
   checkIfEmailExist(email: string): Observable<any> {
-    return this._http.get(environment.url+"/auth/check_email/"+email);
+    return this._http.get("/api/auth/check_email/"+email);
 
   }
 

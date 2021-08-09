@@ -40,10 +40,7 @@ export class DashboardComponent implements OnInit {
     this._empresasService.loadAllEmpresas();
     this.eventLoadEmpresas();
     this.loadCountEmpresasByEstado();
-
     this.loadCountEmpresasByRubro();
-
-
   }
 
 
@@ -96,7 +93,6 @@ export class DashboardComponent implements OnInit {
 
         }else if(data[i].estado == "inactivo"){
           this.cantEmpresasInactivas = data[i].cantidad;
-
         }
       }
     });

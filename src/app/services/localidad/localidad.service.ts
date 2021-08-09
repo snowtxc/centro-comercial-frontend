@@ -17,7 +17,7 @@ export class LocalidadService {
   create(body_content: any): Observable<any> {
     const headers = new HttpHeaders();
 
-    return this._http.post(environment.url + "/localidades", body_content, { headers: headers }).pipe(catchError((err) => {
+    return this._http.post("/api/localidades", body_content, { headers: headers }).pipe(catchError((err) => {
       retry(3);
       return throwError(err.error);
     }));
@@ -26,7 +26,7 @@ export class LocalidadService {
 
   getLocalidades(): Observable<any> {
 
-    return this._http.get(environment.url + "/localidades").pipe(catchError((err) => {
+    return this._http.get("/api/localidades").pipe(catchError((err) => {
       retry(3);
       return throwError(err.error);
     }));
@@ -35,7 +35,7 @@ export class LocalidadService {
 
 
   getLocalidad(id: number):Observable<any> {
-    return this._http.get(environment.url + "localidades/" + id).pipe(catchError((err) => {
+    return this._http.get("api/localidades/" + id).pipe(catchError((err) => {
       retry(3);
       return throwError(err.error);
     }));
@@ -44,7 +44,7 @@ export class LocalidadService {
 
 
   deleteLocalidad(id: number):Observable<any> {
-    return this._http.delete(environment.url + "/localidades/" + id).pipe(catchError((err) => {
+    return this._http.delete("/api/localidades/" + id).pipe(catchError((err) => {
       retry(3);
       return throwError(err.error);
     }));

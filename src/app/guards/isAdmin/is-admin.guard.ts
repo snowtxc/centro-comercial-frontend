@@ -3,7 +3,10 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 
 import { AuthenticationService } from '@services/authentication/authentication.service';
-import { retry } from 'rxjs/operators';
+import { catchError, retry } from 'rxjs/operators';
+
+import {Observable, throwError} from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -11,19 +14,15 @@ import { retry } from 'rxjs/operators';
 export class IsAdminGuard implements CanActivate {
 
   constructor(private _auth:AuthenticationService,private _router:Router){}
-   canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): boolean {
-      const isAdmin = this._auth.userValue.isAdmin; 
-
-      if(isAdmin){
-        return true;
-      
+   
+  canActivate(): Observable<boolean> {
+    return this._auth.isLogged().pipe(catchError((err: HttpErrorResponse) => {
+      if (err.status == 401) {
+        this._router.navigate(['login']);
       }
-      this._router.navigate(["user_info"]);
-      return false;
-      
-
-    }
+      retry(3);
+      return throwError(err.error);
+    }));
+  }
   
 }

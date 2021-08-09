@@ -47,7 +47,7 @@ export class EmpresaService {
 
 
   loadAllEmpresas(){
-    this._http.get(environment.url + "/empresas").pipe(catchError((err) => {
+    this._http.get("/api/empresas").pipe(catchError((err) => {
       retry(3);
       return throwError(err.error);
     })).subscribe(data => { 
@@ -59,14 +59,14 @@ export class EmpresaService {
 
   filterEmpresas(body_content:any):Observable<any>{
     const headers = new HttpHeaders();
-    return this._http.post(environment.url+"empresas/filter",body_content,{headers:headers});
+    return this._http.post("/api/empresas/filter",body_content,{headers:headers});
   }
 
   
 
 
   getEmpresaById(id: number): Observable<any>{
-    return this._http.get(environment.url + "/empresas/" + id).pipe(catchError((err) => {
+    return this._http.get("/api/empresas/" + id).pipe(catchError((err) => {
       retry(3);
       return throwError(err.error);
     }));
@@ -96,7 +96,7 @@ export class EmpresaService {
   }
 
   deleteEmpresa(id: number): Observable<any>{
-    return this._http.delete(environment.url + "/empresas/" + id).pipe(catchError((err) => {
+    return this._http.delete("/api/empresas/" + id).pipe(catchError((err) => {
       retry(3);
       return throwError(err.error);
     }));
@@ -104,26 +104,26 @@ export class EmpresaService {
   }
 
   asociatePersona(id_persona: number, id_empresa: number): Observable<any>{
-    return this._http.get(environment.url +"/empresas/"+id_empresa+"/contactos/"+id_persona+"");
+    return this._http.get("/api/empresas/"+id_empresa+"/contactos/"+id_persona+"");
   }
 
   checkIfEmailExist(email:string):Observable<any>{
-    return this._http.get(environment.url + "/empresas/check_email/"+email);
+    return this._http.get("/api/empresas/check_email/"+email);
 
   }
 
 
   getRubros():Observable<any>{
-    return this._http.get(environment.url + "/empresas/rubros");
+    return this._http.get("/api/empresas/rubros");
   }
 
 
   getCountEmpresasByRubro():Observable<any>{
-    return this._http.get(environment.url+"/empresas/rubros/cantidad")
+    return this._http.get("/api/empresas/rubros/cantidad")
   }
 
   getCountEmpresasByEstado():Observable<any>{
-    return this._http.get(environment.url +"/empresas/estados/cantidad");
+    return this._http.get("/api/empresas/estados/cantidad");
 
   }
 

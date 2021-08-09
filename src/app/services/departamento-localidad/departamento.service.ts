@@ -25,7 +25,7 @@ export class DepartamentoService {
   create(body_content: any): Observable<any> {
     const headers = new HttpHeaders();
                    
-    return this._http.post(environment.url + "/departamentos", body_content, { headers: headers }).pipe(catchError((err) => {
+    return this._http.post("/api/departamentos", body_content, { headers: headers }).pipe(catchError((err) => {
       retry(3);
       return throwError(err.error);
     }));
@@ -33,13 +33,12 @@ export class DepartamentoService {
   }  
 
   getDepartamentos(): any {
-    let departmentData$ =  this._http.get(environment.url + "/departamentos").pipe(catchError((err) => {
+    let departmentData$ =  this._http.get("/api/departamentos").pipe(catchError((err) => {
       retry(3);
       return throwError(err.error);
     }));
 
     departmentData$.subscribe(data =>{
-      console.log('sadasd');
       this.currentDepartamentosSubject.next(data);
     });
 
@@ -47,7 +46,7 @@ export class DepartamentoService {
 
 
   getDepartamentoById(id: number): Observable<any>{
-    return this._http.get(environment.url + "departamentos/" + id).pipe(catchError((err) => {
+    return this._http.get("api/departamentos/" + id).pipe(catchError((err) => {
       retry(3);
       return throwError(err.error);
     }));
@@ -57,7 +56,7 @@ export class DepartamentoService {
   editDepartamento(id: number, body_content: any): Observable<any> {
     const headers = new HttpHeaders();
 
-    return this._http.put(environment.url + "/departamentos/" + id, body_content, { headers: headers }).pipe(catchError((err) => {
+    return this._http.put("/api/departamentos/" + id, body_content, { headers: headers }).pipe(catchError((err) => {
       retry(3);
       return throwError(err.error);
     }));
@@ -66,7 +65,7 @@ export class DepartamentoService {
 
    
   deleteDepartamento(id: number): Observable<any> {
-    return this._http.delete(environment.url + "/departamentos/" + id).pipe(catchError((err) => {
+    return this._http.delete("/api/departamentos/" + id).pipe(catchError((err) => {
       retry(3);
       return throwError(err.error);
     }));

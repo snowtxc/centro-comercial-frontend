@@ -27,12 +27,16 @@ export class EmpresasListComponent implements OnInit {
 
   //Filters
 
-   public localidadIdFilter:any ='';
-   public departamentoIdFilter:any = '';
-   public estadoFilterChecked: any = false;
-   public rubroFilter:any = '';
+   dataFilter = {
+      localidadId:  '',
+      departamentoId: '',
+      estado: '',
+      rubro: '',
+      filterActivate: false
+   }
+   
 
-   filterActivate = false;
+ 
 
    
   constructor(private _router:Router,private _empresasService:EmpresaService,private _departamentoService:DepartamentoService) { }
@@ -121,14 +125,13 @@ export class EmpresasListComponent implements OnInit {
 
   mySelectRubro($event:any){
       console.log($event);
-      this.rubroFilter = $event;
+      this.dataFilter.rubro = $event;
     
 
   }
 
   onCheckBoxChange($event:any){
-    this.estadoFilterChecked = $event.currentTarget.checked;
-    
+    this.dataFilter.estado = $event.currentTarget.checked;
   }
 
 

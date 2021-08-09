@@ -48,7 +48,7 @@ export class EmpresasCreateComponent implements OnInit,AfterViewInit {
   @ViewChild('inputEmailUser')  input_email_user:any;
 
 
-
+   
   constructor(private _builderForm:FormBuilder,private _empresaService:EmpresaService,private _departamentoService:DepartamentoService) {
     this.addEmpresaForm = this._builderForm.group({
       name: ['',Validators.required],
@@ -63,7 +63,7 @@ export class EmpresasCreateComponent implements OnInit,AfterViewInit {
       nro_referencia: ['', Validators.pattern("^[0-9]*$")],
       rubro: ['',Validators.required],
       rubro_secundario: [''],
-      departamento: ['',Validators.required],
+      departamento: ['',Validators.required],  
       localidad: ['',Validators.required],
       observaciones: ['',Validators.required],
       email_user_empresa: ['',[Validators.required,Validators.email]],

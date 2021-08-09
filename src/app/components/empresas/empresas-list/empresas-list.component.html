@@ -5,7 +5,7 @@
     <div class="empresas-filter">
        <div class="empresas-filter-element">
             <label>Departamento:</label>
-            <select class="browser-default" (ngModelChange)="mySelectDepartment($event)" [(ngModel)]="departamentoIdFilter">
+            <select class="browser-default" (ngModelChange)="mySelectDepartment($event)" [(ngModel)]="dataFilter.departamentoId">
                 <option value="">Todos</option>
                 <option *ngFor="let departamento of departamentosArr" [value]="departamento.id">{{departamento.name}}</option> 
             </select>   
@@ -14,13 +14,13 @@
 
        <div class="empresas-filter-element">
             <label>Localidad</label>
-            <select class="browser-default" [(ngModel)]="localidadIdFilter">
+            <select class="browser-default" [(ngModel)]="dataFilter.localidadId">
                 <option value="" >Todos</option>
                 <option *ngFor="let localidad of localidadesArr" [value]="localidad.id">{{localidad.name}}</option>
             </select>    
        </div>               
 
-      <div class="empresas-filter-element" [(ngModel)]="estadoFilterChecked">
+      <div class="empresas-filter-element" [(ngModel)]="dataFilter.estado">
         <label>Estado</label>
         <div class="switch">
             <label> 
@@ -35,7 +35,7 @@
 
     <div class="empresas-filter-element">
         <label>Rubro:</label>
-        <select class="browser-default" [(ngModel)]="rubroFilter" (ngModelChange)="mySelectDepartment($event)">
+        <select class="browser-default" [(ngModel)]="dataFilter.rubro" (ngModelChange)="mySelectDepartment($event)">
             <option value="" >todos</option>
             <option  *ngFor="let rubro of rubrosArr" [value]="rubro.rubro">{{rubro.rubro}}</option>
         </select>
@@ -48,7 +48,7 @@
  </div>
 
  <div class="filter-effect">
-    <div class="chip" *ngIf="filterActivate">
+    <div class="chip" *ngIf="dataFilter.filterActivate">
         Filter activado
         <i class="close material-icons">close</i>
     </div>
@@ -72,14 +72,15 @@
 
         <div class="empresa-list-elements"> 
             <ul class="collection">  
-                <li class="collection-item avatar" *ngFor="let empresa of pageOfItemsEmpresas | filterByName:empresasArr:inputSearch | filterEmpresa:estadoFilterChecked | filterByDepartamentoLocalidad:departamentoIdFilter:localidadIdFilter |  filterByRubro:rubroFilter" (click)="selectedEmpresa(empresa.id)">
+                <li class="collection-item avatar"
+                    *ngFor="let empresa of pageOfItemsEmpresas | filterByName:empresasArr:inputSearch"  (click)="selectedEmpresa(empresa.id)">
                     <img src="http://localhost:3712/api/empresas/getLogo/{{empresa.url_logo}}" alt="" class="circle">
                     <span class="title">{{empresa.Nombre}}</span>
-                    <p>Direccion: {{empresa.Direccion}}<br> 
+                    <p>Direccion: {{empresa.Direccion}}<br>
                         Rut: {{empresa.rut}}
                     </p>
                 </li>
-            
+
             </ul>
         </div>
 

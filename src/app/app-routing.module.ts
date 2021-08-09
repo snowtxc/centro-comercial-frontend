@@ -19,14 +19,14 @@ import { NotFoundComponent } from '@components/not-found/not-found.component';
 //Guard 
 
 import { IsLoggedGuard } from './guards/isLogged/is-logged.guard';
-import { IsNotLoggedGuard } from './guards/isNotLogged/is-not-logged.guard';
+
 import { IsAdminGuard } from './guards/isAdmin/is-admin.guard';
 
 
 const routes: Routes = [
-  {path: 'login',component: LoginComponent, canActivate: [IsNotLoggedGuard]},
+  {path: 'login',component: LoginComponent},
   {path: '', redirectTo: 'admin', pathMatch: 'full'},
-  {path: 'user_info',component: UserInfoComponent},
+  {path: 'user_info',component: UserInfoComponent, canActivate: [IsLoggedGuard]},
   {path: 'admin',component: InicioComponent, children: [
     {path: '',redirectTo: 'dashboard', pathMatch: 'full'},
     {path: 'dashboard',component: DashboardComponent},
@@ -37,7 +37,7 @@ const routes: Routes = [
     { path:   'empresas/:id/detail', component: EmpresasDetailComponent},
     {path:  'personas/:id/detail',component: PersonasDetailComponent},
     {path:  'personas/create', component: PersonasCreateComponent}
-  ], canActivate: [IsLoggedGuard,IsAdminGuard]},
+  ], canActivate: [IsLoggedGuard]},
   {path: '**', component: NotFoundComponent}
   
 

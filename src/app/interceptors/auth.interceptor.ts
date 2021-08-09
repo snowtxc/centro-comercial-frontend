@@ -4,11 +4,14 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { LocalstorageService } from "@services/localstorage/localstorage.service";
 
+import { tap } from 'rxjs/operators';
+
 import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpResponse
 } from '@angular/common/http';
 
 
@@ -20,17 +23,21 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     request = this.addToken(request);
     return next.handle(request);
+    
   }
+
+
+
 
   private addToken(request:HttpRequest<any>){
     const token = this._localStorage.getToken();
-    if (token) { 
+    if (token) {   
       let headers = request.headers
         .set('Content-Type', 'application/json')
         .set('Authorization', token);
 
       const cloneReq = request.clone({ headers });
-
+      
       return cloneReq;
 
     }else {

@@ -21,17 +21,6 @@ export class LocalstorageService {
   }
 
 
-  getDataUser(): string | null {
-    return localStorage.getItem('datauser');
-  }
-
-  setDataUser(datauser: any) {
-    const stringDataUser = JSON.stringify(datauser);
-    localStorage.setItem("datauser", stringDataUser);
-  }
-
-  destroyDataUser() {
-    localStorage.removeItem('datauser');
-  }
+ 
 
 }
