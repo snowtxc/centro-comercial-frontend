@@ -102,7 +102,7 @@ export class DashboardComponent implements OnInit {
 
   loadCountEmpresasByRubro(){
     this._empresasService.getCountEmpresasByRubro().subscribe(data =>{ 
-      this.cantEmpresasByRubro =data; })
+      this.cantEmpresasByRubro = data; })
   }
 
 

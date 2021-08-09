@@ -38,6 +38,7 @@ import { JwPaginationModule } from 'jw-angular-pagination';
 //Pipes
 import { FilterByNamePipe } from './pipes/filterByName/filter-by-name.pipe';
 import { FilterByNameDepartmentPipe } from './pipes/filterByNameDepartment/filter-by-name-department.pipe';
+import { ErrorOcurredComponent } from './components/error-ocurred/error-ocurred.component';
 
 
 
@@ -67,7 +68,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     UserInfoComponent,
     NotFoundComponent,
     FilterByNamePipe,
-    FilterByNameDepartmentPipe
+    FilterByNameDepartmentPipe,
+    ErrorOcurredComponent
   ],
   imports: [
     BrowserModule,

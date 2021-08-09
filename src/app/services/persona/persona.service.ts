@@ -8,6 +8,7 @@ import  {environment} from "src/environments/environment";
 import { Observable,throwError} from 'rxjs';
 
 import { retry,catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -18,7 +19,7 @@ export class PersonaService {
   
   
 
-  constructor(private _http:HttpClient) {
+  constructor(private _http:HttpClient,private router:Router) {
      
    }
 
@@ -30,6 +31,7 @@ export class PersonaService {
     
     return this._http.post("/api/contactos", body_content, { headers: headers }).pipe(catchError((err) => {
       retry(3);
+      this.router.navigate(['error']);
       return throwError(err.error);
     }));
 
@@ -39,6 +41,7 @@ export class PersonaService {
 
     return this._http.get("/api/contactos").pipe(catchError((err) => {
       retry(3);
+      this.router.navigate(['error']);
       return throwError(err.error);
     }));
 
@@ -48,6 +51,7 @@ export class PersonaService {
   getPersonaById(id: any): Observable<any>{
     return this._http.get("/api/contactos/" + id).pipe(catchError((err) => {
       retry(3);
+      this.router.navigate(['error']);
       return throwError(err.error);
     }));
   }
@@ -58,6 +62,7 @@ export class PersonaService {
 
     return this._http.put("/api/contactos/" + id, body_content, { headers: headers }).pipe(catchError((err) => {
       retry(3);
+      this.router.navigate(['error']);;
       return throwError(err.error);
     }));
 
@@ -66,17 +71,26 @@ export class PersonaService {
   deletePersona(id: number): Observable<any> {
     return this._http.delete("/api/contactos/" + id).pipe(catchError((err) => {
       retry(3);
+      this.router.navigate(['error']);
       return throwError(err.error);
     }));
 
   }
 
   asociateEmpresa(id_persona: number, id_empresa: number,body_content:any): Observable<any>{
-    return this._http.post("/api/contactos/" + id_persona + "/empresas/" + id_empresa,body_content);
+    return this._http.post("/api/contactos/" + id_persona + "/empresas/" + id_empresa, body_content).pipe(catchError((err) => {
+      retry(3);
+      this.router.navigate(['error']);
+      return throwError(err.error);
+    }));;
   }
 
   checkIfEmailExist(email: string): Observable<any> {
-    return this._http.get("/api/auth/check_email/"+email);
+    return this._http.get("/api/auth/check_email/" + email).pipe(catchError((err) => {
+      retry(3);
+      this.router.navigate(['error']);
+      return throwError(err.error);
+    }));;
 
   }
 

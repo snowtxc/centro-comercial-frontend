@@ -15,7 +15,7 @@ import { EmpresasCreateComponent } from '@components/empresas/empresas-create/em
 import { PersonasCreateComponent } from '@components/personas/personas-create/personas-create.component';
 import { UserInfoComponent } from '@components/user-info/user-info.component';
 import { NotFoundComponent } from '@components/not-found/not-found.component';
-
+import { ErrorOcurredComponent } from '@components/error-ocurred/error-ocurred.component';
 //Guard 
 
 import { IsLoggedGuard } from './guards/isLogged/is-logged.guard';
@@ -38,7 +38,9 @@ const routes: Routes = [
     {path:  'personas/:id/detail',component: PersonasDetailComponent},
     {path:  'personas/create', component: PersonasCreateComponent}
   ], canActivate: [IsLoggedGuard]},
-  {path: '**', component: NotFoundComponent}
+  { path: 'error', component: ErrorOcurredComponent },
+  {path: '**', component: NotFoundComponent},
+ 
   
 
 ];

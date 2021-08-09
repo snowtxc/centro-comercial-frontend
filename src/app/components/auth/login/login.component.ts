@@ -40,8 +40,10 @@ export class LoginComponent implements OnInit {
     const email = this.loginForm.controls['email'].value;
     const password = this.loginForm.controls['password'].value;
 
-    this._auth.auth(email,password).subscribe(() =>{  },
-      
+    this._auth.auth(email,password).subscribe(() =>{ 
+
+     },
+
     error =>{
       this.error = true;
       this.msgError = error;

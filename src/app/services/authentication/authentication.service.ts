@@ -16,6 +16,7 @@ import { LocalstorageService } from '@services/localstorage/localstorage.service
 import { Router } from '@angular/router';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -23,7 +24,7 @@ export class AuthenticationService {
 
 
 
-  constructor(private _http:HttpClient,private _localStorage:LocalstorageService,private _router:Router) {}
+  constructor(private _http:HttpClient,private _localStorage:LocalstorageService,private router:Router) {}
 
 
   auth(email:string,password:string):Observable<any>{
@@ -36,6 +37,7 @@ export class AuthenticationService {
 
     return this._http.post("/api/auth/login", body_content, { headers: headers }).pipe(catchError((err) => {
       retry(3);
+      this.router.navigate(['error']);
       return throwError(err.error);
     })).pipe(map(data =>{
        let obj = Object.create(data);
@@ -46,9 +48,9 @@ export class AuthenticationService {
        this.createUserSesion(token);
 
        if(isAdmin){
-         this._router.navigate(['']);
+         this.router.navigate(['']);
        }else{
-         this._router.navigate(['user_info']);
+         this.router.navigate(['user_info']);
        }
 
     }))
@@ -62,12 +64,15 @@ export class AuthenticationService {
 
   destroyUserSesion() {
     this._localStorage.destroyToken();
-    this._router.navigate(['login']);  
+    this.router.navigate(['login']);  
   }
 
   isLogged():Observable<any>{
-  
-    return this._http.get("/api/auth/is-logged"); 
+    return this._http.get("/api/auth/is-logged").pipe(catchError((err) => {
+      retry(3);
+      this.router.navigate(['error']);
+      return throwError(err.error);   
+    }));;
   }
 
 
